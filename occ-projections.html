@@ -93,6 +93,7 @@
   .w-dates{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:13px;}
   .w-meta{color:var(--muted);font-size:12px;margin-top:2px;line-height:1.35;}
   .w-meta b{color:var(--text);font-weight:600;font-variant-numeric:tabular-nums;}
+  .w-pending{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:.9em;letter-spacing:.06em;}
 
   .pending{opacity:.5;pointer-events:none;}
   .empty{padding:38px 20px;text-align:center;color:var(--muted);
@@ -168,20 +169,26 @@
   }
   function featuredCard(w, workbook){
     const pend=(!workbook||workbook==='#');
+    const pending=(w.flights==null);
+    const count = pending ? '<b>—</b><span>Pending</span>' : `<b>${w.flights}</b><span>Flights</span>`;
+    const note = pending ? '<div class="f-note">Projection not yet built — open the workbook to build it.</div>'
+                         : (w.note ? `<div class="f-note">${w.note}</div>` : '');
     return `<a ${pend?'class="featured pending"':`class="featured" href="${workbook}" target="_blank" rel="noopener"`}>
       <div><div class="f-pill"><span class="dot"></span>Current Week</div>
         <div class="f-week">Week ${w.week}</div>
         <div class="f-dates">${fmtRange(w.start,w.end)}</div>
-        ${w.note ? `<div class="f-note">${w.note}</div>` : ''}</div>
-      <div class="f-right"><div class="f-count"><b>${w.flights}</b><span>Flights</span></div>
+        ${note}</div>
+      <div class="f-right"><div class="f-count">${count}</div>
         <div class="f-open">Open workbook →</div></div></a>`;
   }
   function weekCard(w, workbook){
     const pend=(!workbook||workbook==='#');
+    const meta = (w.flights==null) ? '<span class="w-pending">Projection pending</span>'
+                                   : `<b>${w.flights}</b> flights${w.note ? ' · '+w.note : ''}`;
     return `<a ${pend?'class="week pending"':`class="week" href="${workbook}" target="_blank" rel="noopener"`}>
       <div class="w-num">Week ${w.week}</div>
       <div class="w-dates">${fmtRange(w.start,w.end)}</div>
-      <div class="w-meta"><b>${w.flights}</b> flights${w.note ? ' · '+w.note : ''}</div></a>`;
+      <div class="w-meta">${meta}</div></a>`;
   }
 
   let ALL = {};
@@ -230,7 +237,8 @@
   function buildFilters(){
     const periods=Object.keys(ALL);
     const yrs=new Set(periods.map(p=>p.slice(0,4)));
-    const nowY=+CUR_PERIOD.slice(0,4); yrs.add(String(nowY)); yrs.add(String(nowY+1));
+    const nowY=+CUR_PERIOD.slice(0,4);
+    for(let y=Math.min(nowY, ...[...yrs].map(Number).concat([nowY])); y<=2030; y++) yrs.add(String(y));
     const years=[...yrs].sort();
     fYear.innerHTML = years.map(y=>`<option value="${y}">${y}</option>`).join('');
 
