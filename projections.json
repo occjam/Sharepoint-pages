@@ -1,1 +1,2696 @@
-{}
+{
+  "2024-08": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/08.%20August/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-07-28",
+          "end": "2024-08-03",
+          "flights": 26,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-08-04",
+          "end": "2024-08-10",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-08-11",
+          "end": "2024-08-17",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-08-18",
+          "end": "2024-08-24",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-08-25",
+          "end": "2024-08-31",
+          "flights": 63,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/08.%20August/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-07-28",
+          "end": "2024-08-03",
+          "flights": 88,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-08-04",
+          "end": "2024-08-10",
+          "flights": 171,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-08-11",
+          "end": "2024-08-17",
+          "flights": 165,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-08-18",
+          "end": "2024-08-24",
+          "flights": 148,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-08-25",
+          "end": "2024-08-31",
+          "flights": 139,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2024-09": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/09.%20September/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-09-01",
+          "end": "2024-09-07",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-09-08",
+          "end": "2024-09-14",
+          "flights": 64,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-09-15",
+          "end": "2024-09-21",
+          "flights": 60,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-09-22",
+          "end": "2024-09-28",
+          "flights": 59,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-09-29",
+          "end": "2024-10-05",
+          "flights": 16,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/09.%20September/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-09-01",
+          "end": "2024-09-07",
+          "flights": 127,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-09-08",
+          "end": "2024-09-14",
+          "flights": 117,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-09-15",
+          "end": "2024-09-21",
+          "flights": 116,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-09-22",
+          "end": "2024-09-28",
+          "flights": 117,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-09-29",
+          "end": "2024-10-05",
+          "flights": 36,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2024-10": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/10.%20October/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-09-29",
+          "end": "2024-10-05",
+          "flights": 43,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-10-06",
+          "end": "2024-10-12",
+          "flights": 59,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-10-13",
+          "end": "2024-10-19",
+          "flights": 59,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-10-20",
+          "end": "2024-10-26",
+          "flights": 59,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-10-27",
+          "end": "2024-11-02",
+          "flights": 41,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/10.%20October/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-09-29",
+          "end": "2024-10-05",
+          "flights": 85,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-10-06",
+          "end": "2024-10-12",
+          "flights": 137,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-10-13",
+          "end": "2024-10-19",
+          "flights": 139,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-10-20",
+          "end": "2024-10-26",
+          "flights": 139,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-10-27",
+          "end": "2024-11-02",
+          "flights": 100,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2024-11": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/11.%20November/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-10-27",
+          "end": "2024-11-02",
+          "flights": 17,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-11-03",
+          "end": "2024-11-09",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-11-10",
+          "end": "2024-11-16",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-11-17",
+          "end": "2024-11-23",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-11-24",
+          "end": "2024-11-30",
+          "flights": 60,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/11.%20November/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-10-27",
+          "end": "2024-11-02",
+          "flights": 49,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-11-03",
+          "end": "2024-11-09",
+          "flights": 160,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-11-10",
+          "end": "2024-11-16",
+          "flights": 176,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-11-17",
+          "end": "2024-11-23",
+          "flights": 176,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-11-24",
+          "end": "2024-11-30",
+          "flights": 180,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2024-12": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/12.%20December/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-12-01",
+          "end": "2024-12-07",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-12-08",
+          "end": "2024-12-14",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-12-15",
+          "end": "2024-12-21",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-12-22",
+          "end": "2024-12-28",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-12-29",
+          "end": "2025-01-04",
+          "flights": 28,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2024/12.%20December/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-12-01",
+          "end": "2024-12-07",
+          "flights": 180,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2024-12-08",
+          "end": "2024-12-14",
+          "flights": 183,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2024-12-15",
+          "end": "2024-12-21",
+          "flights": 208,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2024-12-22",
+          "end": "2024-12-28",
+          "flights": 233,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2024-12-29",
+          "end": "2025-01-04",
+          "flights": 97,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-01": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/01.%20January/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-12-29",
+          "end": "2025-01-04",
+          "flights": 41,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-01-05",
+          "end": "2025-01-11",
+          "flights": 70,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-01-12",
+          "end": "2025-01-18",
+          "flights": 69,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-01-19",
+          "end": "2025-01-25",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-01-26",
+          "end": "2025-02-01",
+          "flights": 60,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/01.%20January/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2024-12-29",
+          "end": "2025-01-04",
+          "flights": 143,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-01-05",
+          "end": "2025-01-11",
+          "flights": 210,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-01-12",
+          "end": "2025-01-18",
+          "flights": 198,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-01-19",
+          "end": "2025-01-25",
+          "flights": 201,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-01-26",
+          "end": "2025-02-01",
+          "flights": 154,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-02": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/02.%20February/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-01-26",
+          "end": "2025-02-01",
+          "flights": 8,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-02-02",
+          "end": "2025-02-08",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-02-09",
+          "end": "2025-02-15",
+          "flights": 68,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-02-16",
+          "end": "2025-02-22",
+          "flights": 69,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-02-23",
+          "end": "2025-03-01",
+          "flights": 61,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/02.%20February/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-01-26",
+          "end": "2025-02-01",
+          "flights": 39,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-02-02",
+          "end": "2025-02-08",
+          "flights": 195,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-02-09",
+          "end": "2025-02-15",
+          "flights": 198,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-02-16",
+          "end": "2025-02-22",
+          "flights": 210,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-02-23",
+          "end": "2025-03-01",
+          "flights": 164,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-03": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/03.%20March/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-02-23",
+          "end": "2025-03-01",
+          "flights": 7,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-03-02",
+          "end": "2025-03-08",
+          "flights": 66,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-03-09",
+          "end": "2025-03-15",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-03-16",
+          "end": "2025-03-22",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-03-23",
+          "end": "2025-03-29",
+          "flights": 68,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2025-03-30",
+          "end": "2025-04-05",
+          "flights": 18,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/03.%20March/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-02-23",
+          "end": "2025-03-01",
+          "flights": 40,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-03-02",
+          "end": "2025-03-08",
+          "flights": 213,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-03-09",
+          "end": "2025-03-15",
+          "flights": 227,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-03-16",
+          "end": "2025-03-22",
+          "flights": 230,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-03-23",
+          "end": "2025-03-29",
+          "flights": 226,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2025-03-30",
+          "end": "2025-04-05",
+          "flights": 62,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-04": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/04.%20April/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-03-30",
+          "end": "2025-04-05",
+          "flights": 50,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-04-06",
+          "end": "2025-04-12",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-04-13",
+          "end": "2025-04-19",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-04-20",
+          "end": "2025-04-26",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-04-27",
+          "end": "2025-05-03",
+          "flights": 36,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/04.%20April/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-03-30",
+          "end": "2025-04-05",
+          "flights": 164,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-04-06",
+          "end": "2025-04-12",
+          "flights": 210,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-04-13",
+          "end": "2025-04-19",
+          "flights": 192,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-04-20",
+          "end": "2025-04-26",
+          "flights": 189,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-04-27",
+          "end": "2025-05-03",
+          "flights": 99,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-05": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/05.%20May/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-04-27",
+          "end": "2025-05-03",
+          "flights": 25,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-05-04",
+          "end": "2025-05-10",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-05-11",
+          "end": "2025-05-17",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-05-18",
+          "end": "2025-05-24",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-05-25",
+          "end": "2025-05-31",
+          "flights": 62,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/05.%20May/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-04-27",
+          "end": "2025-05-03",
+          "flights": 87,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-05-04",
+          "end": "2025-05-10",
+          "flights": 180,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-05-11",
+          "end": "2025-05-17",
+          "flights": 177,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-05-18",
+          "end": "2025-05-24",
+          "flights": 179,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-05-25",
+          "end": "2025-05-31",
+          "flights": 187,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-06": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/06.%20June/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-06-01",
+          "end": "2025-06-07",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-06-08",
+          "end": "2025-06-14",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-06-15",
+          "end": "2025-06-21",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-06-22",
+          "end": "2025-06-28",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-06-29",
+          "end": "2025-07-05",
+          "flights": 17,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/06.%20June/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-06-01",
+          "end": "2025-06-07",
+          "flights": 195,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-06-08",
+          "end": "2025-06-14",
+          "flights": 207,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-06-15",
+          "end": "2025-06-21",
+          "flights": 209,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-06-22",
+          "end": "2025-06-28",
+          "flights": 211,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-06-29",
+          "end": "2025-07-05",
+          "flights": 61,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-07": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/07.%20July/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-06-29",
+          "end": "2025-07-05",
+          "flights": 46,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-07-06",
+          "end": "2025-07-12",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-07-13",
+          "end": "2025-07-19",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-07-20",
+          "end": "2025-07-26",
+          "flights": 68,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-07-27",
+          "end": "2025-08-02",
+          "flights": 51,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/07.%20July/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-06-29",
+          "end": "2025-07-05",
+          "flights": 149,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-07-06",
+          "end": "2025-07-12",
+          "flights": 215,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-07-13",
+          "end": "2025-07-19",
+          "flights": 217,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-07-20",
+          "end": "2025-07-26",
+          "flights": 217,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-07-27",
+          "end": "2025-08-02",
+          "flights": 148,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-08": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/08.%20August/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-07-27",
+          "end": "2025-08-02",
+          "flights": 17,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-08-03",
+          "end": "2025-08-09",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-08-10",
+          "end": "2025-08-16",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-08-17",
+          "end": "2025-08-23",
+          "flights": 66,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-08-24",
+          "end": "2025-08-30",
+          "flights": 66,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2025-08-31",
+          "end": "2025-09-06",
+          "flights": 6,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/08.%20August/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-07-27",
+          "end": "2025-08-02",
+          "flights": 67,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-08-03",
+          "end": "2025-08-09",
+          "flights": 189,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-08-10",
+          "end": "2025-08-16",
+          "flights": 180,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-08-17",
+          "end": "2025-08-23",
+          "flights": 161,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-08-24",
+          "end": "2025-08-30",
+          "flights": 149,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2025-08-31",
+          "end": "2025-09-06",
+          "flights": 21,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-09": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/09.%20September/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-08-31",
+          "end": "2025-09-06",
+          "flights": 57,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-09-07",
+          "end": "2025-09-13",
+          "flights": 66,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-09-14",
+          "end": "2025-09-20",
+          "flights": 64,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-09-21",
+          "end": "2025-09-27",
+          "flights": 64,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-09-28",
+          "end": "2025-10-04",
+          "flights": 28,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/09.%20September/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-08-31",
+          "end": "2025-09-06",
+          "flights": 111,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-09-07",
+          "end": "2025-09-13",
+          "flights": 122,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-09-14",
+          "end": "2025-09-20",
+          "flights": 123,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-09-21",
+          "end": "2025-09-27",
+          "flights": 123,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-09-28",
+          "end": "2025-10-04",
+          "flights": 51,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-10": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/10.%20October/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-09-28",
+          "end": "2025-10-04",
+          "flights": 36,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-10-05",
+          "end": "2025-10-11",
+          "flights": 64,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-10-12",
+          "end": "2025-10-18",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-10-19",
+          "end": "2025-10-25",
+          "flights": 65,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-10-26",
+          "end": "2025-11-01",
+          "flights": 58,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/10.%20October/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-09-28",
+          "end": "2025-10-04",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-10-05",
+          "end": "2025-10-11",
+          "flights": 149,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-10-12",
+          "end": "2025-10-18",
+          "flights": 150,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-10-19",
+          "end": "2025-10-25",
+          "flights": 149,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-10-26",
+          "end": "2025-11-01",
+          "flights": 140,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-11": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/11.%20November/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-10-26",
+          "end": "2025-11-01",
+          "flights": 7,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-11-02",
+          "end": "2025-11-08",
+          "flights": 66,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-11-09",
+          "end": "2025-11-15",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-11-16",
+          "end": "2025-11-22",
+          "flights": 63,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-11-23",
+          "end": "2025-11-29",
+          "flights": 62,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2025-11-30",
+          "end": "2025-12-06",
+          "flights": 5,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/11.%20November/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-10-26",
+          "end": "2025-11-01",
+          "flights": 28,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-11-02",
+          "end": "2025-11-08",
+          "flights": 204,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-11-09",
+          "end": "2025-11-15",
+          "flights": 211,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-11-16",
+          "end": "2025-11-22",
+          "flights": 211,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-11-23",
+          "end": "2025-11-29",
+          "flights": 216,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2025-11-30",
+          "end": "2025-12-06",
+          "flights": 34,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2025-12": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/12.%20December/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-11-30",
+          "end": "2025-12-06",
+          "flights": 77,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-12-07",
+          "end": "2025-12-13",
+          "flights": 83,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-12-14",
+          "end": "2025-12-20",
+          "flights": 88,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-12-21",
+          "end": "2025-12-27",
+          "flights": 83,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-12-28",
+          "end": "2026-01-03",
+          "flights": 54,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2025/12.%20December/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-11-30",
+          "end": "2025-12-06",
+          "flights": 77,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2025-12-07",
+          "end": "2025-12-13",
+          "flights": 111,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2025-12-14",
+          "end": "2025-12-20",
+          "flights": 143,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2025-12-21",
+          "end": "2025-12-27",
+          "flights": 178,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2025-12-28",
+          "end": "2026-01-03",
+          "flights": 100,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-01": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/01.%20January/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-12-28",
+          "end": "2026-01-03",
+          "flights": 34,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-01-04",
+          "end": "2026-01-10",
+          "flights": 85,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-01-11",
+          "end": "2026-01-17",
+          "flights": 80,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-01-18",
+          "end": "2026-01-24",
+          "flights": 80,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-01-25",
+          "end": "2026-01-31",
+          "flights": 79,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/01.%20January/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2025-12-28",
+          "end": "2026-01-03",
+          "flights": 82,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-01-04",
+          "end": "2026-01-10",
+          "flights": 149,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-01-11",
+          "end": "2026-01-17",
+          "flights": 135,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-01-18",
+          "end": "2026-01-24",
+          "flights": 131,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-01-25",
+          "end": "2026-01-31",
+          "flights": 125,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-02": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/02.%20February/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-02-01",
+          "end": "2026-02-07",
+          "flights": 74,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-02-08",
+          "end": "2026-02-14",
+          "flights": 75,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-02-15",
+          "end": "2026-02-21",
+          "flights": 74,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-02-22",
+          "end": "2026-02-28",
+          "flights": 77,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/02.%20February/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-02-01",
+          "end": "2026-02-07",
+          "flights": 132,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-02-08",
+          "end": "2026-02-14",
+          "flights": 138,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-02-15",
+          "end": "2026-02-21",
+          "flights": 154,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-02-22",
+          "end": "2026-02-28",
+          "flights": 148,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-03": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/03.%20March/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-03-01",
+          "end": "2026-03-07",
+          "flights": 80,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-03-08",
+          "end": "2026-03-14",
+          "flights": 79,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-03-15",
+          "end": "2026-03-21",
+          "flights": 79,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-03-22",
+          "end": "2026-03-28",
+          "flights": 80,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-03-29",
+          "end": "2026-04-04",
+          "flights": 31,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/03.%20March/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-03-01",
+          "end": "2026-03-07",
+          "flights": 164,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-03-08",
+          "end": "2026-03-14",
+          "flights": 175,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-03-15",
+          "end": "2026-03-21",
+          "flights": 178,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-03-22",
+          "end": "2026-03-28",
+          "flights": 171,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-03-29",
+          "end": "2026-04-04",
+          "flights": 71,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-04": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/04.%20April/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-03-29",
+          "end": "2026-04-04",
+          "flights": 46,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-04-05",
+          "end": "2026-04-11",
+          "flights": 76,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-04-12",
+          "end": "2026-04-18",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-04-19",
+          "end": "2026-04-25",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-04-26",
+          "end": "2026-05-02",
+          "flights": 55,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/04.%20April/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-03-29",
+          "end": "2026-04-04",
+          "flights": 103,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-04-05",
+          "end": "2026-04-11",
+          "flights": 174,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-04-12",
+          "end": "2026-04-18",
+          "flights": 165,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-04-19",
+          "end": "2026-04-25",
+          "flights": 161,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-04-26",
+          "end": "2026-05-02",
+          "flights": 106,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-05": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/05.%20May/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-04-26",
+          "end": "2026-05-02",
+          "flights": 21,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-05-03",
+          "end": "2026-05-09",
+          "flights": 77,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-05-10",
+          "end": "2026-05-16",
+          "flights": 77,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-05-17",
+          "end": "2026-05-23",
+          "flights": 82,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-05-24",
+          "end": "2026-05-30",
+          "flights": 86,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2026-05-31",
+          "end": "2026-06-06",
+          "flights": 8,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/05.%20May/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-04-26",
+          "end": "2026-05-02",
+          "flights": 49,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-05-03",
+          "end": "2026-05-09",
+          "flights": 157,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-05-10",
+          "end": "2026-05-16",
+          "flights": 154,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-05-17",
+          "end": "2026-05-23",
+          "flights": 154,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-05-24",
+          "end": "2026-05-30",
+          "flights": 158,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2026-05-31",
+          "end": "2026-06-06",
+          "flights": 23,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-06": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/06.%20June/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-05-31",
+          "end": "2026-06-06",
+          "flights": 75,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-06-07",
+          "end": "2026-06-13",
+          "flights": 82,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-06-14",
+          "end": "2026-06-20",
+          "flights": 82,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-06-21",
+          "end": "2026-06-27",
+          "flights": 83,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-06-28",
+          "end": "2026-07-04",
+          "flights": 31,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/06.%20June/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-05-31",
+          "end": "2026-06-06",
+          "flights": 143,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-06-07",
+          "end": "2026-06-13",
+          "flights": 178,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-06-14",
+          "end": "2026-06-20",
+          "flights": 178,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-06-21",
+          "end": "2026-06-27",
+          "flights": 182,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-06-28",
+          "end": "2026-07-04",
+          "flights": 79,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-07": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/07.%20July/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-06-28",
+          "end": "2026-07-04",
+          "flights": 52,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-07-05",
+          "end": "2026-07-11",
+          "flights": 85,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-07-12",
+          "end": "2026-07-18",
+          "flights": 85,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-07-19",
+          "end": "2026-07-25",
+          "flights": 80,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-07-26",
+          "end": "2026-08-01",
+          "flights": 72,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/07.%20July/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-06-28",
+          "end": "2026-07-04",
+          "flights": 102,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-07-05",
+          "end": "2026-07-11",
+          "flights": 172,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-07-12",
+          "end": "2026-07-18",
+          "flights": 175,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-07-19",
+          "end": "2026-07-25",
+          "flights": 181,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-07-26",
+          "end": "2026-08-01",
+          "flights": 153,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-08": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-07-26",
+          "end": "2026-08-01",
+          "flights": 9,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-08-02",
+          "end": "2026-08-08",
+          "flights": 79,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-08-09",
+          "end": "2026-08-15",
+          "flights": 77,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-08-16",
+          "end": "2026-08-22",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-08-23",
+          "end": "2026-08-29",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2026-08-30",
+          "end": "2026-09-05",
+          "flights": 20,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-07-26",
+          "end": "2026-08-01",
+          "flights": 30,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-08-02",
+          "end": "2026-08-08",
+          "flights": 169,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-08-09",
+          "end": "2026-08-15",
+          "flights": 159,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-08-16",
+          "end": "2026-08-22",
+          "flights": 148,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-08-23",
+          "end": "2026-08-29",
+          "flights": 139,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2026-08-30",
+          "end": "2026-09-05",
+          "flights": 40,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-09": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/09.%20September/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-08-30",
+          "end": "2026-09-05",
+          "flights": 57,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-09-06",
+          "end": "2026-09-12",
+          "flights": 70,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-09-13",
+          "end": "2026-09-19",
+          "flights": 69,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-09-20",
+          "end": "2026-09-26",
+          "flights": 69,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-09-27",
+          "end": "2026-10-03",
+          "flights": 40,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/09.%20September/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-08-30",
+          "end": "2026-09-05",
+          "flights": 96,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-09-06",
+          "end": "2026-09-12",
+          "flights": 122,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-09-13",
+          "end": "2026-09-19",
+          "flights": 115,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-09-20",
+          "end": "2026-09-26",
+          "flights": 117,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-09-27",
+          "end": "2026-10-03",
+          "flights": 63,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-10": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/10.%20October/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-09-27",
+          "end": "2026-10-03",
+          "flights": 42,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-10-04",
+          "end": "2026-10-10",
+          "flights": 100,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-10-11",
+          "end": "2026-10-17",
+          "flights": 105,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-10-18",
+          "end": "2026-10-24",
+          "flights": 104,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-10-25",
+          "end": "2026-10-31",
+          "flights": 103,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/10.%20October/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-09-27",
+          "end": "2026-10-03",
+          "flights": 68,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-10-04",
+          "end": "2026-10-10",
+          "flights": 159,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-10-11",
+          "end": "2026-10-17",
+          "flights": 164,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-10-18",
+          "end": "2026-10-24",
+          "flights": 164,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-10-25",
+          "end": "2026-10-31",
+          "flights": 184,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-11": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/11.%20November/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-11-01",
+          "end": "2026-11-07",
+          "flights": 52,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-11-08",
+          "end": "2026-11-14",
+          "flights": 97,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-11-15",
+          "end": "2026-11-21",
+          "flights": 105,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-11-22",
+          "end": "2026-11-28",
+          "flights": 108,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-11-29",
+          "end": "2026-12-05",
+          "flights": 29,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/11.%20November/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-11-01",
+          "end": "2026-11-07",
+          "flights": 220,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-11-08",
+          "end": "2026-11-14",
+          "flights": 227,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-11-15",
+          "end": "2026-11-21",
+          "flights": 230,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-11-22",
+          "end": "2026-11-28",
+          "flights": 241,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-11-29",
+          "end": "2026-12-05",
+          "flights": 68,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2026-12": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/12.%20December/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-11-29",
+          "end": "2026-12-05",
+          "flights": 95,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-12-06",
+          "end": "2026-12-12",
+          "flights": 131,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-12-13",
+          "end": "2026-12-19",
+          "flights": 141,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-12-20",
+          "end": "2026-12-26",
+          "flights": 154,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-12-27",
+          "end": "2027-01-02",
+          "flights": 109,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/12.%20December/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-11-29",
+          "end": "2026-12-05",
+          "flights": 176,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-12-06",
+          "end": "2026-12-12",
+          "flights": 249,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-12-13",
+          "end": "2026-12-19",
+          "flights": 274,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-12-20",
+          "end": "2026-12-26",
+          "flights": 317,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-12-27",
+          "end": "2027-01-02",
+          "flights": 224,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2027-01": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/01.%20January/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-12-27",
+          "end": "2027-01-02",
+          "flights": 43,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-01-03",
+          "end": "2027-01-09",
+          "flights": 128,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-01-10",
+          "end": "2027-01-16",
+          "flights": 116,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-01-17",
+          "end": "2027-01-23",
+          "flights": 116,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-01-24",
+          "end": "2027-01-30",
+          "flights": 115,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2027-01-31",
+          "end": "2027-02-06",
+          "flights": 14,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/01.%20January/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2026-12-27",
+          "end": "2027-01-02",
+          "flights": 93,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-01-03",
+          "end": "2027-01-09",
+          "flights": 264,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-01-10",
+          "end": "2027-01-16",
+          "flights": 236,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-01-17",
+          "end": "2027-01-23",
+          "flights": 237,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-01-24",
+          "end": "2027-01-30",
+          "flights": 235,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2027-01-31",
+          "end": "2027-02-06",
+          "flights": 37,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2027-02": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/02.%20February/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2027-01-31",
+          "end": "2027-02-06",
+          "flights": 101,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-02-07",
+          "end": "2027-02-13",
+          "flights": 113,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-02-14",
+          "end": "2027-02-20",
+          "flights": 110,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-02-21",
+          "end": "2027-02-27",
+          "flights": 112,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-02-28",
+          "end": "2027-03-06",
+          "flights": 14,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/02.%20February/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2027-01-31",
+          "end": "2027-02-06",
+          "flights": 203,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-02-07",
+          "end": "2027-02-13",
+          "flights": 246,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-02-14",
+          "end": "2027-02-20",
+          "flights": 270,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-02-21",
+          "end": "2027-02-27",
+          "flights": 272,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-02-28",
+          "end": "2027-03-06",
+          "flights": 40,
+          "note": ""
+        }
+      ]
+    }
+  },
+  "2027-03": {
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/03.%20March/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2027-02-28",
+          "end": "2027-03-06",
+          "flights": 98,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-03-07",
+          "end": "2027-03-13",
+          "flights": 111,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-03-14",
+          "end": "2027-03-20",
+          "flights": 116,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-03-21",
+          "end": "2027-03-27",
+          "flights": 120,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-03-28",
+          "end": "2027-04-03",
+          "flights": 66,
+          "note": ""
+        }
+      ]
+    },
+    "MBJ": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/03.%20March/MBJ%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2027-02-28",
+          "end": "2027-03-06",
+          "flights": 238,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-03-07",
+          "end": "2027-03-13",
+          "flights": 289,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-03-14",
+          "end": "2027-03-20",
+          "flights": 298,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-03-21",
+          "end": "2027-03-27",
+          "flights": 293,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-03-28",
+          "end": "2027-04-03",
+          "flights": 164,
+          "note": ""
+        }
+      ]
+    }
+  }
+}
