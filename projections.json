@@ -1,0 +1,44 @@
+{
+  "2026-08": {
+    "MBJ": [
+      { "week": 1, "start": "2026-08-03", "end": "2026-08-09", "flights": 138, "note": "Standard summer schedule.", "url": "#" },
+      { "week": 2, "start": "2026-08-10", "end": "2026-08-16", "flights": 151, "note": "Peak Saturday wave; +2 Condor rotations.", "url": "#" },
+      { "week": 3, "start": "2026-08-17", "end": "2026-08-23", "flights": 144, "note": "Mid-month; watch AC evening bank.", "url": "#" },
+      { "week": 4, "start": "2026-08-24", "end": "2026-08-30", "flights": 149, "note": "Month-end; charter activity expected.", "url": "#" }
+    ],
+    "KIN": [
+      { "week": 1, "start": "2026-08-03", "end": "2026-08-09", "flights": 96, "note": "Standard schedule.", "url": "#" },
+      { "week": 2, "start": "2026-08-10", "end": "2026-08-16", "flights": 104, "note": "AA/DL morning bank heavy.", "url": "#" },
+      { "week": 3, "start": "2026-08-17", "end": "2026-08-23", "flights": 99, "note": "Routine week.", "url": "#" },
+      { "week": 4, "start": "2026-08-24", "end": "2026-08-30", "flights": 101, "note": "Month-end reconciliation.", "url": "#" }
+    ]
+  },
+  "2026-09": {
+    "MBJ": [
+      { "week": 1, "start": "2026-08-31", "end": "2026-09-06", "flights": 132, "note": "Post-summer taper begins.", "url": "#" },
+      { "week": 2, "start": "2026-09-07", "end": "2026-09-13", "flights": 127, "note": "Reduced weekday frequencies.", "url": "#" },
+      { "week": 3, "start": "2026-09-14", "end": "2026-09-20", "flights": 124, "note": "Provisional — OAG pending.", "url": "#" },
+      { "week": 4, "start": "2026-09-21", "end": "2026-09-27", "flights": 121, "note": "Provisional.", "url": "#" }
+    ],
+    "KIN": [
+      { "week": 1, "start": "2026-08-31", "end": "2026-09-06", "flights": 93, "note": "Frequency review pending.", "url": "#" },
+      { "week": 2, "start": "2026-09-07", "end": "2026-09-13", "flights": 91, "note": "Reduced weekday frequencies.", "url": "#" },
+      { "week": 3, "start": "2026-09-14", "end": "2026-09-20", "flights": 90, "note": "Provisional.", "url": "#" },
+      { "week": 4, "start": "2026-09-21", "end": "2026-09-27", "flights": 89, "note": "Provisional.", "url": "#" }
+    ]
+  },
+  "2026-10": {
+    "MBJ": [
+      { "week": 1, "start": "2026-09-28", "end": "2026-10-04", "flights": 118, "note": "Autumn schedule — provisional.", "url": "#" },
+      { "week": 2, "start": "2026-10-05", "end": "2026-10-11", "flights": 116, "note": "Provisional.", "url": "#" },
+      { "week": 3, "start": "2026-10-12", "end": "2026-10-18", "flights": 119, "note": "Provisional.", "url": "#" },
+      { "week": 4, "start": "2026-10-19", "end": "2026-10-25", "flights": 122, "note": "Half-term uplift expected.", "url": "#" }
+    ],
+    "KIN": [
+      { "week": 1, "start": "2026-09-28", "end": "2026-10-04", "flights": 87, "note": "Provisional.", "url": "#" },
+      { "week": 2, "start": "2026-10-05", "end": "2026-10-11", "flights": 86, "note": "Provisional.", "url": "#" },
+      { "week": 3, "start": "2026-10-12", "end": "2026-10-18", "flights": 88, "note": "Provisional.", "url": "#" },
+      { "week": 4, "start": "2026-10-19", "end": "2026-10-25", "flights": 90, "note": "Provisional.", "url": "#" }
+    ]
+  }
+}
