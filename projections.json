@@ -1,41 +1,97 @@
 {
   "2026-08": {
     "MBJ": {
-      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/MBJ%20Flight%20Projection.xlsx?d=wd2bc4f9a67214952a4a638e3a7488cb6&csf=1&web=1&e=7YE3ZY",
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/MBJ%20Flight%20Projection.xlsx",
       "weeks": [
-        { "week": 1, "start": "2026-08-03", "end": "2026-08-09", "flights": 138, "note": "Standard summer schedule." },
-        { "week": 2, "start": "2026-08-10", "end": "2026-08-16", "flights": 151, "note": "Peak Saturday wave; +2 Condor rotations." },
-        { "week": 3, "start": "2026-08-17", "end": "2026-08-23", "flights": 144, "note": "Mid-month; watch AC evening bank." },
-        { "week": 4, "start": "2026-08-24", "end": "2026-08-30", "flights": 149, "note": "Month-end; charter activity expected." }
+        {
+          "week": 1,
+          "start": "2026-07-26",
+          "end": "2026-08-01",
+          "flights": 30,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-08-02",
+          "end": "2026-08-08",
+          "flights": 169,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-08-09",
+          "end": "2026-08-15",
+          "flights": 159,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-08-16",
+          "end": "2026-08-22",
+          "flights": 148,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-08-23",
+          "end": "2026-08-29",
+          "flights": 139,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2026-08-30",
+          "end": "2026-09-05",
+          "flights": 40,
+          "note": ""
+        }
       ]
     },
     "KIN": {
-      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/KIN%20Flight%20Projection.xlsx?d=wb351f182cc4e4bf4bd68fd200e84e59c&csf=1&web=1&e=nWTFv2",
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/KIN%20Flight%20Projection.xlsx",
       "weeks": [
-        { "week": 1, "start": "2026-08-03", "end": "2026-08-09", "flights": 96, "note": "Standard schedule." },
-        { "week": 2, "start": "2026-08-10", "end": "2026-08-16", "flights": 104, "note": "AA/DL morning bank heavy." },
-        { "week": 3, "start": "2026-08-17", "end": "2026-08-23", "flights": 99, "note": "Routine week." },
-        { "week": 4, "start": "2026-08-24", "end": "2026-08-30", "flights": 101, "note": "Month-end reconciliation." }
-      ]
-    }
-  },
-  "2026-09": {
-    "MBJ": {
-      "workbook": "#",
-      "weeks": [
-        { "week": 1, "start": "2026-08-31", "end": "2026-09-06", "flights": 132, "note": "Post-summer taper begins." },
-        { "week": 2, "start": "2026-09-07", "end": "2026-09-13", "flights": 127, "note": "Reduced weekday frequencies." },
-        { "week": 3, "start": "2026-09-14", "end": "2026-09-20", "flights": 124, "note": "Provisional — OAG pending." },
-        { "week": 4, "start": "2026-09-21", "end": "2026-09-27", "flights": 121, "note": "Provisional." }
-      ]
-    },
-    "KIN": {
-      "workbook": "#",
-      "weeks": [
-        { "week": 1, "start": "2026-08-31", "end": "2026-09-06", "flights": 93, "note": "Frequency review pending." },
-        { "week": 2, "start": "2026-09-07", "end": "2026-09-13", "flights": 91, "note": "Reduced weekday frequencies." },
-        { "week": 3, "start": "2026-09-14", "end": "2026-09-20", "flights": 90, "note": "Provisional." },
-        { "week": 4, "start": "2026-09-21", "end": "2026-09-27", "flights": 89, "note": "Provisional." }
+        {
+          "week": 1,
+          "start": "2026-07-26",
+          "end": "2026-08-01",
+          "flights": 9,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2026-08-02",
+          "end": "2026-08-08",
+          "flights": 79,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2026-08-09",
+          "end": "2026-08-15",
+          "flights": 77,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2026-08-16",
+          "end": "2026-08-22",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2026-08-23",
+          "end": "2026-08-29",
+          "flights": 78,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2026-08-30",
+          "end": "2026-09-05",
+          "flights": 20,
+          "note": ""
+        }
       ]
     }
   }

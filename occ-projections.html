@@ -172,7 +172,7 @@
       <div><div class="f-pill"><span class="dot"></span>Current Week</div>
         <div class="f-week">Week ${w.week}</div>
         <div class="f-dates">${fmtRange(w.start,w.end)}</div>
-        <div class="f-note">${w.note||''}</div></div>
+        ${w.note ? `<div class="f-note">${w.note}</div>` : ''}</div>
       <div class="f-right"><div class="f-count"><b>${w.flights}</b><span>Flights</span></div>
         <div class="f-open">Open workbook →</div></div></a>`;
   }
@@ -181,7 +181,7 @@
     return `<a ${pend?'class="week pending"':`class="week" href="${workbook}" target="_blank" rel="noopener"`}>
       <div class="w-num">Week ${w.week}</div>
       <div class="w-dates">${fmtRange(w.start,w.end)}</div>
-      <div class="w-meta"><b>${w.flights}</b> flights · ${w.note||''}</div></a>`;
+      <div class="w-meta"><b>${w.flights}</b> flights${w.note ? ' · '+w.note : ''}</div></a>`;
   }
 
   let ALL = {};
