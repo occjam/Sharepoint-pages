@@ -1,7 +1,7 @@
 {
   "2026-08": {
     "MBJ": {
-      "workbook": "#",
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2026/08.%20August/MBJ%20Flight%20Projection.xlsx?d=wd2bc4f9a67214952a4a638e3a7488cb6&csf=1&web=1&e=7YE3ZY",
       "weeks": [
         { "week": 1, "start": "2026-08-03", "end": "2026-08-09", "flights": 138, "note": "Standard summer schedule." },
         { "week": 2, "start": "2026-08-10", "end": "2026-08-16", "flights": 151, "note": "Peak Saturday wave; +2 Condor rotations." },
