@@ -137,17 +137,17 @@
   // Fallback so the page still works in preview / if the fetch fails.
   const FALLBACK = {
     "2026-08": {
-      MBJ:[{week:1,start:"2026-08-03",end:"2026-08-09",flights:138,note:"Standard summer schedule.",url:"#"},
-           {week:2,start:"2026-08-10",end:"2026-08-16",flights:151,note:"Peak Saturday wave.",url:"#"},
-           {week:3,start:"2026-08-17",end:"2026-08-23",flights:144,note:"Mid-month.",url:"#"},
-           {week:4,start:"2026-08-24",end:"2026-08-30",flights:149,note:"Month-end.",url:"#"}],
-      KIN:[{week:1,start:"2026-08-03",end:"2026-08-09",flights:96,note:"Standard.",url:"#"},
-           {week:2,start:"2026-08-10",end:"2026-08-16",flights:104,note:"AA/DL heavy.",url:"#"},
-           {week:3,start:"2026-08-17",end:"2026-08-23",flights:99,note:"Routine.",url:"#"},
-           {week:4,start:"2026-08-24",end:"2026-08-30",flights:101,note:"Month-end.",url:"#"}]
-    },
-    "2026-09": { MBJ:[{week:1,start:"2026-08-31",end:"2026-09-06",flights:132,note:"Taper begins.",url:"#"}],
-                 KIN:[{week:1,start:"2026-08-31",end:"2026-09-06",flights:93,note:"Review pending.",url:"#"}] }
+      MBJ:{ workbook:"#", weeks:[
+        {week:1,start:"2026-08-03",end:"2026-08-09",flights:138,note:"Standard summer schedule."},
+        {week:2,start:"2026-08-10",end:"2026-08-16",flights:151,note:"Peak Saturday wave."},
+        {week:3,start:"2026-08-17",end:"2026-08-23",flights:144,note:"Mid-month."},
+        {week:4,start:"2026-08-24",end:"2026-08-30",flights:149,note:"Month-end."}]},
+      KIN:{ workbook:"#", weeks:[
+        {week:1,start:"2026-08-03",end:"2026-08-09",flights:96,note:"Standard."},
+        {week:2,start:"2026-08-10",end:"2026-08-16",flights:104,note:"AA/DL heavy."},
+        {week:3,start:"2026-08-17",end:"2026-08-23",flights:99,note:"Routine."},
+        {week:4,start:"2026-08-24",end:"2026-08-30",flights:101,note:"Month-end."}]}
+    }
   };
 
   const MONTHF=['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -166,9 +166,9 @@
     if(!cur) cur = list.slice().sort((a,b)=>a.end<b.end?1:-1)[0];
     return cur;
   }
-  function featuredCard(w){
-    const pend=(!w.url||w.url==='#');
-    return `<a ${pend?'class="featured pending"':`class="featured" href="${w.url}" target="_blank" rel="noopener"`}>
+  function featuredCard(w, workbook){
+    const pend=(!workbook||workbook==='#');
+    return `<a ${pend?'class="featured pending"':`class="featured" href="${workbook}" target="_blank" rel="noopener"`}>
       <div><div class="f-pill"><span class="dot"></span>Current Week</div>
         <div class="f-week">Week ${w.week}</div>
         <div class="f-dates">${fmtRange(w.start,w.end)}</div>
@@ -176,9 +176,9 @@
       <div class="f-right"><div class="f-count"><b>${w.flights}</b><span>Flights</span></div>
         <div class="f-open">Open workbook →</div></div></a>`;
   }
-  function weekCard(w){
-    const pend=(!w.url||w.url==='#');
-    return `<a ${pend?'class="week pending"':`class="week" href="${w.url}" target="_blank" rel="noopener"`}>
+  function weekCard(w, workbook){
+    const pend=(!workbook||workbook==='#');
+    return `<a ${pend?'class="week pending"':`class="week" href="${workbook}" target="_blank" rel="noopener"`}>
       <div class="w-num">Week ${w.week}</div>
       <div class="w-dates">${fmtRange(w.start,w.end)}</div>
       <div class="w-meta"><b>${w.flights}</b> flights · ${w.note||''}</div></a>`;
@@ -199,13 +199,15 @@
     if(!stations.length){ app.innerHTML='<div class="empty">No '+stationSel+' data for this month.</div>'; return; }
     let html='';
     stations.forEach(stn=>{
-      const list = data[stn].slice().sort((a,b)=>a.week-b.week);
+      const so = data[stn] || {};
+      const workbook = so.workbook || '#';
+      const list = (so.weeks||[]).slice().sort((a,b)=>a.week-b.week);
       const current = pickCurrent(list);
       const others = list.filter(w=>w!==current);
       html += `<div class="station">
         <div class="station-label">${stn} <span class="full">· ${STATION_NAMES[stn]||''}</span></div>
-        ${current?featuredCard(current):''}
-        <div class="weekgrid">${others.map(weekCard).join('')}</div></div>`;
+        ${current?featuredCard(current, workbook):''}
+        <div class="weekgrid">${others.map(w=>weekCard(w, workbook)).join('')}</div></div>`;
     });
     app.innerHTML = html;
   }
