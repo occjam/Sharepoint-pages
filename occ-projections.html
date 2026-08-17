@@ -229,8 +229,9 @@
   };
 
   const MONTHF=['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const todayJM = new Intl.DateTimeFormat('en-CA',{timeZone:'America/Jamaica'}).format(new Date());
-  const CUR_PERIOD = todayJM.slice(0,7);
+  const jamaicaToday = () => new Intl.DateTimeFormat('en-CA',{timeZone:'America/Jamaica'}).format(new Date());
+  let todayJM = jamaicaToday();
+  let CUR_PERIOD = todayJM.slice(0,7);
 
   const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function fmtRange(s,e){
@@ -243,6 +244,17 @@
     if(!cur) cur = list.filter(w=>w.start>todayJM).sort((a,b)=>a.start<b.start?-1:1)[0];
     if(!cur) cur = list.slice().sort((a,b)=>a.end<b.end?1:-1)[0];
     return cur;
+  }
+  // the week that actually contains today (null if today is outside this month's weeks)
+  function todayWeek(list){ return list.find(w => w.start<=todayJM && todayJM<=w.end) || null; }
+  // the published month closest to today, so the board opens on 'now' even if the exact month isn't built yet
+  function nearestPeriod(){
+    const periods=Object.keys(ALL).filter(p=>/^\d{4}-\d{2}$/.test(p)).sort();
+    if(!periods.length) return CUR_PERIOD;
+    if(periods.includes(CUR_PERIOD)) return CUR_PERIOD;
+    const idx=p=>{const a=p.split('-');return (+a[0])*12+(+a[1]-1);};
+    const c=idx(CUR_PERIOD);
+    return periods.slice().sort((a,b)=>Math.abs(idx(a)-c)-Math.abs(idx(b)-c))[0];
   }
   function featuredCard(w, workbook, label){
     const pend=(!workbook||workbook==='#');
@@ -294,9 +306,9 @@
       return;
     }
     const list=(so.weeks||[]).slice().sort((a,b)=>a.week-b.week);
-    const cur=pickCurrent(list);
-    const week=list.find(w=>w.week===+fWeek.value) || cur || list[0];
-    const isCur = cur && week && cur.week===week.week;
+    const week=list.find(w=>w.week===+fWeek.value) || pickCurrent(list) || list[0];
+    const tw = todayWeek(list);
+    const isCur = tw && week && tw.week===week.week;
     const wb = so.workbook || '#';
     const pending = (week.flights==null);
     wsEl.innerHTML = `<div class="ws-station">${station} · ${STATION_NAMES[station]||''}</div>
@@ -460,15 +472,18 @@
     const years=[...yrs].sort();
     fYear.innerHTML = years.map(y=>`<option value="${y}">${y}</option>`).join('');
 
-    const startYear = periods.includes(CUR_PERIOD) ? CUR_PERIOD.slice(0,4) : (years.find(y=>monthsForYear(y).length) || years[0]);
-    fYear.value = startYear;
-    populateMonths(startYear, periods.includes(CUR_PERIOD) ? CUR_PERIOD.slice(5,7) : null);
+    const startPeriod = nearestPeriod();
+    fYear.value = startPeriod.slice(0,4);
+    populateMonths(startPeriod.slice(0,4), startPeriod.slice(5,7));
 
     const fWeek=document.getElementById('fWeek');
-    fStation.addEventListener('change', ()=>{ populateWeeks(); render(); });
-    fYear.addEventListener('change', ()=>{ populateMonths(fYear.value); populateWeeks(); render(); });
-    fMonth.addEventListener('change', ()=>{ populateWeeks(); render(); });
-    fWeek.addEventListener('change', render);
+    if(!window.__filtersWired){
+      fStation.addEventListener('change', ()=>{ populateWeeks(); render(); });
+      fYear.addEventListener('change', ()=>{ populateMonths(fYear.value); populateWeeks(); render(); });
+      fMonth.addEventListener('change', ()=>{ populateWeeks(); render(); });
+      fWeek.addEventListener('change', render);
+      window.__filtersWired = true;
+    }
     populateWeeks();
     render();
   }
@@ -484,12 +499,16 @@
     buildFilters();
   }
   load();
-  // refresh data quietly, preserving the user's current selection
+  // refresh data quietly, preserving the user's current selection; re-default at midnight (Jamaica)
   setInterval(async()=>{
+    const now = jamaicaToday();
+    const rolled = (now !== todayJM);
+    if(rolled){ todayJM = now; CUR_PERIOD = now.slice(0,7); }
     try{
       const r=await fetch(CONFIG.endpoint+'?t='+Date.now(),{cache:'no-store'});
-      if(r.ok){ const d=await r.json(); if(d&&Object.keys(d).length){ ALL=d; render(); } }
+      if(r.ok){ const d=await r.json(); if(d&&Object.keys(d).length) ALL=d; }
     }catch(e){}
+    if(rolled) buildFilters(); else render();
   }, CONFIG.refreshMs);
 </script>
 </body>
