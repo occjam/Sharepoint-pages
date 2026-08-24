@@ -2120,28 +2120,28 @@
           "week": 2,
           "start": "2026-09-06",
           "end": "2026-09-12",
-          "flights": 70,
+          "flights": 73,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-09-13",
           "end": "2026-09-19",
-          "flights": 69,
+          "flights": 72,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-09-20",
           "end": "2026-09-26",
-          "flights": 69,
+          "flights": 72,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-09-27",
           "end": "2026-10-03",
-          "flights": 40,
+          "flights": 43,
           "note": ""
         }
       ]
@@ -2153,35 +2153,35 @@
           "week": 1,
           "start": "2026-08-30",
           "end": "2026-09-05",
-          "flights": 96,
+          "flights": 99,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-09-06",
           "end": "2026-09-12",
-          "flights": 122,
+          "flights": 125,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-09-13",
           "end": "2026-09-19",
-          "flights": 115,
+          "flights": 118,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-09-20",
           "end": "2026-09-26",
-          "flights": 117,
+          "flights": 120,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-09-27",
           "end": "2026-10-03",
-          "flights": 63,
+          "flights": 64,
           "note": ""
         }
       ]
@@ -2195,35 +2195,35 @@
           "week": 1,
           "start": "2026-09-27",
           "end": "2026-10-03",
-          "flights": 42,
+          "flights": 44,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-10-04",
           "end": "2026-10-10",
-          "flights": 100,
+          "flights": 104,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-10-11",
           "end": "2026-10-17",
-          "flights": 105,
+          "flights": 110,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-10-18",
           "end": "2026-10-24",
-          "flights": 104,
+          "flights": 109,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-10-25",
           "end": "2026-10-31",
-          "flights": 103,
+          "flights": 108,
           "note": ""
         }
       ]
@@ -2235,35 +2235,35 @@
           "week": 1,
           "start": "2026-09-27",
           "end": "2026-10-03",
-          "flights": 68,
+          "flights": 70,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-10-04",
           "end": "2026-10-10",
-          "flights": 159,
+          "flights": 162,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-10-11",
           "end": "2026-10-17",
-          "flights": 164,
+          "flights": 167,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-10-18",
           "end": "2026-10-24",
-          "flights": 164,
+          "flights": 167,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-10-25",
           "end": "2026-10-31",
-          "flights": 184,
+          "flights": 187,
           "note": ""
         }
       ]
@@ -2277,35 +2277,35 @@
           "week": 1,
           "start": "2026-11-01",
           "end": "2026-11-07",
-          "flights": 52,
+          "flights": 109,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-11-08",
           "end": "2026-11-14",
-          "flights": 97,
+          "flights": 107,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-11-15",
           "end": "2026-11-21",
-          "flights": 105,
+          "flights": 109,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-11-22",
           "end": "2026-11-28",
-          "flights": 108,
+          "flights": 113,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 29,
+          "flights": 30,
           "note": ""
         }
       ]
@@ -2317,35 +2317,35 @@
           "week": 1,
           "start": "2026-11-01",
           "end": "2026-11-07",
-          "flights": 220,
+          "flights": 223,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-11-08",
           "end": "2026-11-14",
-          "flights": 227,
+          "flights": 230,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-11-15",
           "end": "2026-11-21",
-          "flights": 230,
+          "flights": 233,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-11-22",
           "end": "2026-11-28",
-          "flights": 241,
+          "flights": 236,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 68,
+          "flights": 66,
           "note": ""
         }
       ]
@@ -2359,35 +2359,35 @@
           "week": 1,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 95,
+          "flights": 100,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-12-06",
           "end": "2026-12-12",
-          "flights": 131,
+          "flights": 136,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-12-13",
           "end": "2026-12-19",
-          "flights": 141,
+          "flights": 146,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-12-20",
           "end": "2026-12-26",
-          "flights": 154,
+          "flights": 159,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-12-27",
           "end": "2027-01-02",
-          "flights": 109,
+          "flights": 113,
           "note": ""
         }
       ]
@@ -2399,35 +2399,35 @@
           "week": 1,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 176,
+          "flights": 180,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-12-06",
           "end": "2026-12-12",
-          "flights": 249,
+          "flights": 253,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-12-13",
           "end": "2026-12-19",
-          "flights": 274,
+          "flights": 278,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-12-20",
           "end": "2026-12-26",
-          "flights": 317,
+          "flights": 322,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-12-27",
           "end": "2027-01-02",
-          "flights": 224,
+          "flights": 226,
           "note": ""
         }
       ]
