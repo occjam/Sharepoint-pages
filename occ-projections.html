@@ -310,9 +310,11 @@
     const tw = todayWeek(list);
     const isCur = tw && week && tw.week===week.week;
     const wb = so.workbook || '#';
-    const pending = (week.flights==null);
+    const monthTotal = list.reduce((s,w)=> s + (w.flights||0), 0);
+    const anyData = list.some(w=> w.flights!=null);
+    const isCurMonth = (period === CUR_PERIOD);
     wsEl.innerHTML = `<div class="ws-station">${station} · ${STATION_NAMES[station]||''}</div>
-      <div class="ws-count"><b>${pending?'—':week.flights}</b><div class="ws-lbl"><span>Flights</span>${isCur?'<small>this week</small>':''}</div></div>
+      <div class="ws-count"><b>${anyData?monthTotal:'—'}</b><div class="ws-lbl"><span>Flights</span>${isCurMonth?'<small>this month</small>':''}</div></div>
       ${(wb&&wb!=='#')?`<a class="ws-open" href="${wb}" target="_blank" rel="noopener">Open workbook →</a>`:'<span class="ws-open disabled">Workbook pending</span>'}`;
     app.innerHTML = '<div id="daypanel"></div>';
     fillDays(station, period, week);
