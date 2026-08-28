@@ -172,6 +172,9 @@
   .tl-body{position:relative;}
   .tl-grid{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.05);}
   .tl-now{position:absolute;top:0;bottom:0;width:2px;background:rgba(246,192,74,.7);box-shadow:0 0 6px rgba(246,192,74,.5);}
+  .tl-conc-wrap{position:relative;margin-top:10px;padding-top:16px;border-top:1px solid var(--line);}
+  .tl-conc-lbl{position:absolute;top:2px;left:6px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .tl-conc-lbl b{color:var(--gold-bright,#FFD873);}
   .tl-bar{position:absolute;height:22px;border-radius:5px;display:flex;align-items:center;padding:0 7px;overflow:hidden;border:1px solid transparent;box-sizing:border-box;}
   .tl-lbl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .tl-bar.ta{background:rgba(74,222,128,.16);border-color:rgba(74,222,128,.55);color:#c6f6d5;}
@@ -466,9 +469,21 @@
       const tip=`${label}  ·  ${f.sta||'--:--'}–${f.std||'--:--'}  ·  ${f.from||'—'}→${f.to||'—'}  ·  ${f.acft||''}  ·  ${f.type||''}`;
       return `<div class="tl-bar ${cls}" style="left:${left}%;width:${width}%;top:${top}px" title="${tip}"><span class="tl-lbl">${label}</span></div>`;
     }).join('');
+    // concurrency profile (how many on the ground) + peak window, shown as a strip beneath the bars
+    const evs=[]; items.forEach(it=>{ evs.push({t:it.s,d:1}); evs.push({t:it.e,d:-1}); }); evs.sort((a,b)=>a.t-b.t);
+    const uniq=[...new Set(evs.map(e=>e.t))].sort((a,b)=>a-b);
+    let cur=0, ei=0, segs=[], maxC=0;
+    for(let i=0;i<uniq.length;i++){ const t=uniq[i]; while(ei<evs.length && evs[ei].t===t){ cur+=evs[ei].d; ei++; } const tn=uniq[i+1]; if(tn!=null){ segs.push([t,tn,cur]); if(cur>maxC) maxC=cur; } }
+    const hhmm=m=>String((m/60)|0).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+    let windows=[]; segs.filter(s=>s[2]===maxC).forEach(s=>{ const last=windows[windows.length-1]; if(last && last[1]===s[0]) last[1]=s[1]; else windows.push([s[0],s[1]]); });
+    const peakTxt=windows.map(w=>hhmm(w[0])+'–'+hhmm(w[1])).join(', ');
+    let conc='';
+    if(maxC>0){ let path='M '+lo+' '+maxC; segs.forEach(s=>{ path+=' L '+s[0]+' '+(maxC-s[2])+' L '+s[1]+' '+(maxC-s[2]); }); path+=' L '+hi+' '+maxC+' Z';
+      conc=`<div class="tl-conc-wrap"><div class="tl-conc-lbl">Peak <b>${maxC}</b> on ground · <b>${peakTxt}</b></div><svg viewBox="${lo} 0 ${span} ${maxC}" preserveAspectRatio="none" style="width:100%;height:48px;display:block"><path d="${path}" fill="rgba(246,192,74,.13)" stroke="rgba(246,192,74,.65)" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>`; }
     return `<div class="tl"><div class="tl-inner" style="min-width:${minW}px">
       <div class="tl-axis">${axis}</div>
       <div class="tl-body" style="height:${bodyH}px">${grid}${nowLine}${bars}</div>
+      ${conc}
     </div></div><div class="fcount">${items.length} movements · timeline</div>`;
   }
   function dayPanel(list){
