@@ -160,6 +160,25 @@
   .controw,.ronrow{background:rgba(78,168,255,.05)!important;box-shadow:inset 3px 0 0 rgba(78,168,255,.55);}
   .cont-mark{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4EA8FF;letter-spacing:.04em;}
   .fcount{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);margin:12px 2px 0;text-align:right;letter-spacing:.05em;}
+  .viewbar{display:flex;justify-content:flex-end;margin:0 2px 12px;}
+  .vtoggle{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .vbtn{background:transparent;border:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;padding:7px 15px;cursor:pointer;}
+  .vbtn.on{background:rgba(246,192,74,.14);color:var(--gold-bright,#FFD873);}
+  .vbtn:not(.on):hover{color:var(--text);}
+  .tl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.015);padding:12px 0 8px;}
+  .tl-inner{position:relative;}
+  .tl-axis{position:relative;height:22px;border-bottom:1px solid var(--line);margin-bottom:8px;}
+  .tl-hr{position:absolute;top:3px;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.03em;white-space:nowrap;}
+  .tl-body{position:relative;}
+  .tl-grid{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.05);}
+  .tl-now{position:absolute;top:0;bottom:0;width:2px;background:rgba(246,192,74,.7);box-shadow:0 0 6px rgba(246,192,74,.5);}
+  .tl-bar{position:absolute;height:22px;border-radius:5px;display:flex;align-items:center;padding:0 7px;overflow:hidden;border:1px solid transparent;box-sizing:border-box;}
+  .tl-lbl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .tl-bar.ta{background:rgba(74,222,128,.16);border-color:rgba(74,222,128,.55);color:#c6f6d5;}
+  .tl-bar.ron{background:rgba(78,168,255,.16);border-color:rgba(78,168,255,.55);color:#d3e8ff;}
+  .tl-bar.cgo{background:rgba(183,148,246,.16);border-color:rgba(183,148,246,.55);color:#e8dcff;}
+  .tl-bar.fs{background:rgba(251,146,60,.16);border-color:rgba(251,146,60,.55);color:#ffe2c4;}
+  .tl-bar.oth{background:rgba(129,148,176,.16);border-color:rgba(129,148,176,.55);color:#dbe3ef;}
   .fempty{padding:26px;text-align:center;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:12px;}
   @media (max-width:620px){
     .featured{grid-template-columns:1fr;gap:16px;}
@@ -319,6 +338,7 @@
     app.innerHTML = '<div id="daypanel"></div>';
     fillDays(station, period, week);
   }
+  let VIEW_MODE='list';
   async function fillDays(station, period, week){
     const daytabsEl=document.getElementById('daytabs'), panel=document.getElementById('daypanel');
     const all=await loadFlights(period);
@@ -328,9 +348,20 @@
       const d=new Date(iso+'T00:00'); const isT=iso===todayJM; const n=(F[iso]||[]).length;
       return `<div class="daytab${isT?' today':''}${n?'':' void'}" data-day="${iso}">${DOW[d.getDay()]} <small>${d.getDate()} ${MON3[d.getMonth()]}</small></div>`;
     }).join('');
+    let curIso=null;
+    function paint(){
+      if(!panel) return;
+      const list=F[curIso]||[];
+      const toggle=`<div class="viewbar"><div class="vtoggle">`
+        +`<button class="vbtn${VIEW_MODE==='list'?' on':''}" data-v="list">List</button>`
+        +`<button class="vbtn${VIEW_MODE==='timeline'?' on':''}" data-v="timeline">Timeline</button></div></div>`;
+      const body = VIEW_MODE==='timeline' ? dayTimeline(list, curIso===todayJM) : dayPanel(list);
+      panel.innerHTML = toggle + body;
+      panel.querySelectorAll('.vbtn').forEach(b=>b.addEventListener('click',()=>{ VIEW_MODE=b.dataset.v; paint(); }));
+    }
     function showDay(iso){
       daytabsEl.querySelectorAll('.daytab').forEach(t=>t.classList.toggle('active',t.dataset.day===iso));
-      if(panel) panel.innerHTML=dayPanel(F[iso]);
+      curIso=iso; paint();
     }
     daytabsEl.querySelectorAll('.daytab').forEach(t=>t.addEventListener('click',()=>showDay(t.dataset.day)));
     showDay(days.includes(todayJM)?todayJM:days[0]);
@@ -391,6 +422,55 @@
   function typeCls(t){t=(t||'').toUpperCase();
     if(t.indexOf('RON')>=0)return'ron'; if(t.indexOf('CGO')>=0)return'cgo';
     if(t.indexOf('FS')>=0)return'fs'; if(t.indexOf('T/A')>=0)return'ta'; return'oth';}
+
+  // ---- Timeline (clash) view ----
+  function toMin(t){ if(!t||typeof t!=='string') return null; const m=t.match(/^(\d{1,2}):(\d{2})/); return m ? (+m[1]*60 + +m[2]) : null; }
+  function barInterval(f){
+    const cls=typeCls(f.type), H=60, ty=(f.type||'').toUpperCase();
+    const sta=toMin(f.sta), std=toMin(f.std);
+    if(cls==='ron'){                                   // RON: fixed 1-hour bar
+      if(f.cont){ if(std!=null) return [std-H,std]; if(sta!=null) return [sta,sta+H]; }
+      else      { if(sta!=null) return [sta,sta+H]; if(std!=null) return [std-H,std]; }
+      return null;
+    }
+    if(ty.indexOf('R/S')>=0){                          // R/S: fixed 1-hour bar
+      if(sta!=null) return [sta,sta+H]; if(std!=null) return [std-H,std]; return null;
+    }
+    if(sta!=null && std!=null) return std>sta ? [sta,std] : [sta,sta+H];  // T/A, CGO, FS: real ground span
+    if(sta!=null) return [sta,sta+H];
+    if(std!=null) return [std-H,std];
+    return null;
+  }
+  function dayTimeline(list, isToday){
+    if(!list || !list.length) return '<div class="ftable"><div class="fempty">No flights listed for this day.</div></div>';
+    const items=[];
+    list.forEach(f=>{ const iv=barInterval(f); if(iv) items.push({f, s:iv[0], e:iv[1]}); });
+    if(!items.length) return '<div class="ftable"><div class="fempty">No timed movements to plot for this day.</div></div>';
+    let lo=Math.min(...items.map(i=>i.s)), hi=Math.max(...items.map(i=>i.e));
+    lo=Math.max(0,Math.floor(lo/60)*60); hi=Math.min(1440,Math.ceil(hi/60)*60);
+    if(hi-lo<120) hi=Math.min(1440, lo+120);
+    const span=hi-lo, pct=m=>((m-lo)/span*100);
+    items.sort((a,b)=>a.s-b.s || a.e-b.e);
+    const laneEnd=[];
+    items.forEach(it=>{ let p=false; for(let i=0;i<laneEnd.length;i++){ if(it.s>=laneEnd[i]){ it.lane=i; laneEnd[i]=it.e; p=true; break; } } if(!p){ it.lane=laneEnd.length; laneEnd.push(it.e); } });
+    const ROW=30, PAD=8, bodyH=PAD*2+laneEnd.length*ROW, minW=Math.max(660, Math.round(span/60*92));
+    let grid='', axis='';
+    for(let h=Math.ceil(lo/60)*60; h<=hi; h+=60){ const L=pct(h); grid+=`<div class="tl-grid" style="left:${L}%"></div>`; axis+=`<div class="tl-hr" style="left:${L}%">${String(h/60|0).padStart(2,'0')}:00</div>`; }
+    let nowLine='';
+    if(isToday){ const hhmm=new Intl.DateTimeFormat('en-GB',{timeZone:'America/Jamaica',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date()); const nm=toMin(hhmm); if(nm!=null && nm>=lo && nm<=hi) nowLine=`<div class="tl-now" style="left:${pct(nm)}%"></div>`; }
+    const bars=items.map(it=>{
+      const f=it.f, cls=typeCls(f.type);
+      const left=pct(it.s), width=Math.max(1.4, pct(it.e)-pct(it.s)), top=PAD+it.lane*ROW;
+      const num = f.cont ? (f.dep??'') : (f.arr!=null ? (''+f.arr+((f.dep!=null && f.dep!==f.arr)?'/'+f.dep:'')) : (f.dep??''));
+      const label=`${f.airline||''} ${num}`.trim();
+      const tip=`${label}  ·  ${f.sta||'--:--'}–${f.std||'--:--'}  ·  ${f.from||'—'}→${f.to||'—'}  ·  ${f.acft||''}  ·  ${f.type||''}`;
+      return `<div class="tl-bar ${cls}" style="left:${left}%;width:${width}%;top:${top}px" title="${tip}"><span class="tl-lbl">${label}</span></div>`;
+    }).join('');
+    return `<div class="tl"><div class="tl-inner" style="min-width:${minW}px">
+      <div class="tl-axis">${axis}</div>
+      <div class="tl-body" style="height:${bodyH}px">${grid}${nowLine}${bars}</div>
+    </div></div><div class="fcount">${items.length} movements · timeline</div>`;
+  }
   function dayPanel(list){
     if(!list||!list.length) return '<div class="ftable"><div class="fempty">No flights listed for this day.</div></div>';
     const rows=list.map(f=>{
