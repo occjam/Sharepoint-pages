@@ -20,7 +20,13 @@
   html,body{background:#0B1B30;}
   body{font-family:'Space Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:14px;color:var(--text);
     background:radial-gradient(120% 90% at 85% 0%, rgba(255,176,46,.05), transparent 55%),
-      linear-gradient(160deg,#102743,#0B1B30 55%,#071120);min-height:100vh;}
+      linear-gradient(160deg,#102743,#0B1B30 55%,#071120);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+  .head,.filters{flex:0 0 auto;}
+  #app{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:4px;}
+  #app::-webkit-scrollbar{width:10px;}
+  #app::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:6px;}
+  #app::-webkit-scrollbar-thumb{background:rgba(246,192,74,.28);border-radius:6px;}
+  #app::-webkit-scrollbar-thumb:hover{background:rgba(246,192,74,.45);}
   a{text-decoration:none;color:inherit;}
 
   /* header */
@@ -175,6 +181,8 @@
   .tl-conc-wrap{position:relative;margin-top:10px;padding-top:16px;border-top:1px solid var(--line);}
   .tl-conc-lbl{position:absolute;top:2px;left:6px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
   .tl-conc-lbl b{color:var(--gold-bright,#FFD873);}
+  .tl-conc rect{fill:transparent;pointer-events:all;cursor:crosshair;}
+  .tl-conc rect:hover{fill:rgba(246,192,74,.16);}
   .tl-bar{position:absolute;height:22px;border-radius:5px;display:flex;align-items:center;padding:0 7px;overflow:hidden;border:1px solid transparent;box-sizing:border-box;}
   .tl-lbl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .tl-bar.ta{background:rgba(74,222,128,.16);border-color:rgba(74,222,128,.55);color:#c6f6d5;}
@@ -222,6 +230,8 @@
           <div class="selwrap"><select id="fMonth"></select></div></label>
         <label class="filter"><span class="flabel">Week</span>
           <div class="selwrap"><select id="fWeek" style="min-width:80px"></select></div></label>
+        <label class="filter"><span class="flabel">Airline</span>
+          <div class="selwrap"><select id="fAirline"><option value="ALL">All airlines</option></select></div></label>
       </div>
       <div class="daytabs" id="daytabs"></div>
     </div>
@@ -342,19 +352,41 @@
     fillDays(station, period, week);
   }
   let VIEW_MODE='list';
+  let AIRLINE_FILTER='ALL';
   async function fillDays(station, period, week){
-    const daytabsEl=document.getElementById('daytabs'), panel=document.getElementById('daypanel');
+    const daytabsEl=document.getElementById('daytabs'), panel=document.getElementById('daypanel'), fAirline=document.getElementById('fAirline');
     const all=await loadFlights(period);
     const F=all[station]||{};
     const days=[...Array(7)].map((_,i)=>addDays(week.start,i));
-    daytabsEl.innerHTML=days.map(iso=>{
-      const d=new Date(iso+'T00:00'); const isT=iso===todayJM; const n=(F[iso]||[]).length;
-      return `<div class="daytab${isT?' today':''}${n?'':' void'}" data-day="${iso}">${DOW[d.getDay()]} <small>${d.getDate()} ${MON3[d.getMonth()]}</small></div>`;
-    }).join('');
+    // airlines flying this station this month → dropdown options
+    const airlines=[...new Set(Object.keys(F).filter(iso=>iso.startsWith(period)).flatMap(iso=>F[iso].map(f=>f.airline)).filter(Boolean))].sort();
+    if(fAirline){
+      if(AIRLINE_FILTER!=='ALL' && !airlines.includes(AIRLINE_FILTER)) AIRLINE_FILTER='ALL';
+      fAirline.innerHTML='<option value="ALL">All airlines</option>'+airlines.map(a=>`<option value="${a}">${a}</option>`).join('');
+      fAirline.value=AIRLINE_FILTER;
+      fAirline.onchange=()=>{ AIRLINE_FILTER=fAirline.value; renderTabs(); paint(); updateSummary(); };
+    }
+    const filt=arr=>AIRLINE_FILTER==='ALL'?arr:arr.filter(f=>f.airline===AIRLINE_FILTER);
+    // station month total, to restore the summary when the filter is cleared
+    const so=(ALL[period]||{})[station]||{}; const stationTotal=(so.weeks||[]).reduce((s,w)=>s+(w.flights||0),0);
+    const isCurMonth=(period===CUR_PERIOD);
+    function updateSummary(){
+      const wsEl=document.getElementById('weekSummary'); if(!wsEl) return;
+      const b=wsEl.querySelector('.ws-count b'), lbl=wsEl.querySelector('.ws-lbl'); if(!b||!lbl) return;
+      if(AIRLINE_FILTER==='ALL'){ b.textContent=stationTotal; lbl.innerHTML='<span>Flights</span>'+(isCurMonth?'<small>this month</small>':''); }
+      else { let c=0; for(const iso in F){ if(iso.startsWith(period)) c+=F[iso].filter(f=>f.airline===AIRLINE_FILTER && !f.cont).length; } b.textContent=c; lbl.innerHTML='<span>'+AIRLINE_FILTER+'</span>'+(isCurMonth?'<small>this month</small>':''); }
+    }
     let curIso=null;
+    function renderTabs(){
+      daytabsEl.innerHTML=days.map(iso=>{
+        const d=new Date(iso+'T00:00'); const isT=iso===todayJM; const n=filt(F[iso]||[]).length;
+        return `<div class="daytab${isT?' today':''}${n?'':' void'}${iso===curIso?' active':''}" data-day="${iso}">${DOW[d.getDay()]} <small>${d.getDate()} ${MON3[d.getMonth()]}</small></div>`;
+      }).join('');
+      daytabsEl.querySelectorAll('.daytab').forEach(t=>t.addEventListener('click',()=>showDay(t.dataset.day)));
+    }
     function paint(){
       if(!panel) return;
-      const list=F[curIso]||[];
+      const list=filt(F[curIso]||[]);
       const toggle=`<div class="viewbar"><div class="vtoggle">`
         +`<button class="vbtn${VIEW_MODE==='list'?' on':''}" data-v="list">List</button>`
         +`<button class="vbtn${VIEW_MODE==='timeline'?' on':''}" data-v="timeline">Timeline</button></div></div>`;
@@ -362,12 +394,10 @@
       panel.innerHTML = toggle + body;
       panel.querySelectorAll('.vbtn').forEach(b=>b.addEventListener('click',()=>{ VIEW_MODE=b.dataset.v; paint(); }));
     }
-    function showDay(iso){
-      daytabsEl.querySelectorAll('.daytab').forEach(t=>t.classList.toggle('active',t.dataset.day===iso));
-      curIso=iso; paint();
-    }
-    daytabsEl.querySelectorAll('.daytab').forEach(t=>t.addEventListener('click',()=>showDay(t.dataset.day)));
+    function showDay(iso){ curIso=iso; renderTabs(); paint(); }
+    renderTabs();
     showDay(days.includes(todayJM)?todayJM:days[0]);
+    updateSummary();
   }
 
   // ── Flight list (single-station) ──
@@ -479,7 +509,8 @@
     const peakTxt=windows.map(w=>hhmm(w[0])+'–'+hhmm(w[1])).join(', ');
     let conc='';
     if(maxC>0){ let path='M '+lo+' '+maxC; segs.forEach(s=>{ path+=' L '+s[0]+' '+(maxC-s[2])+' L '+s[1]+' '+(maxC-s[2]); }); path+=' L '+hi+' '+maxC+' Z';
-      conc=`<div class="tl-conc-wrap"><div class="tl-conc-lbl">Peak <b>${maxC}</b> on ground · <b>${peakTxt}</b></div><svg viewBox="${lo} 0 ${span} ${maxC}" preserveAspectRatio="none" style="width:100%;height:48px;display:block"><path d="${path}" fill="rgba(246,192,74,.13)" stroke="rgba(246,192,74,.65)" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>`; }
+      const hov=segs.map(s=>`<rect x="${s[0]}" y="0" width="${s[1]-s[0]}" height="${maxC}"><title>${s[2]} on ground · ${hhmm(s[0])}–${hhmm(s[1])}</title></rect>`).join('');
+      conc=`<div class="tl-conc-wrap"><div class="tl-conc-lbl">Peak <b>${maxC}</b> on ground · <b>${peakTxt}</b></div><svg class="tl-conc" viewBox="${lo} 0 ${span} ${maxC}" preserveAspectRatio="none" style="width:100%;height:48px;display:block"><path d="${path}" fill="rgba(246,192,74,.13)" stroke="rgba(246,192,74,.65)" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>${hov}</svg></div>`; }
     return `<div class="tl"><div class="tl-inner" style="min-width:${minW}px">
       <div class="tl-axis">${axis}</div>
       <div class="tl-body" style="height:${bodyH}px">${grid}${nowLine}${bars}</div>
