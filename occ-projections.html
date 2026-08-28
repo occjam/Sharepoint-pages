@@ -604,9 +604,12 @@
     fYear.value = startPeriod.slice(0,4);
     populateMonths(startPeriod.slice(0,4), startPeriod.slice(5,7));
 
+    // remember the employee's last station (per browser)
+    try{ const s=localStorage.getItem('occ_station'); if(s==='MBJ'||s==='KIN') fStation.value=s; }catch(e){}
+
     const fWeek=document.getElementById('fWeek');
     if(!window.__filtersWired){
-      fStation.addEventListener('change', ()=>{ populateWeeks(); render(); });
+      fStation.addEventListener('change', ()=>{ try{ localStorage.setItem('occ_station', fStation.value); }catch(e){} populateWeeks(); render(); });
       fYear.addEventListener('change', ()=>{ populateMonths(fYear.value); populateWeeks(); render(); });
       fMonth.addEventListener('change', ()=>{ populateWeeks(); render(); });
       fWeek.addEventListener('change', render);
