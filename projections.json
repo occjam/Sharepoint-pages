@@ -2167,21 +2167,21 @@
           "week": 3,
           "start": "2026-09-13",
           "end": "2026-09-19",
-          "flights": 118,
+          "flights": 117,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-09-20",
           "end": "2026-09-26",
-          "flights": 120,
+          "flights": 119,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-09-27",
           "end": "2026-10-03",
-          "flights": 64,
+          "flights": 63,
           "note": ""
         }
       ]
