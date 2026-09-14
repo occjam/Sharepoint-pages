@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Vacation Calendar</title>
+<style>
+  :root{
+    --navy:#0C2340;
+    --panel:#0F2A4A;
+    --panel-2:#12315A;
+    --line:rgba(255,255,255,.07);
+    --line-strong:rgba(255,255,255,.14);
+    --amber:#F5A623;
+    --ink:#E8EEF6;
+    --muted:#8FA3C0;
+    --muted-2:#6C82A6;
+    --annual:#F5A623;
+    --sick:#E5484D;
+    --training:#3BA9F0;
+    --personal:#A78BFA;
+    --unpaid:#64748B;
+    --other:#2DD4BF;
+    --day-w:5px;
+    --name-w:196px;
+    --row-h:32px;
+    --font:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--navy);
+    color:var(--ink);
+    font-family:var(--font);
+    font-size:14px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{padding:18px 20px 24px}
+
+  /* Header */
+  .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+  .title{display:flex;align-items:center;gap:12px}
+  .title .rule{width:4px;height:38px;background:var(--amber);border-radius:2px;box-shadow:0 0 14px rgba(245,166,35,.5)}
+  .title h1{font-size:22px;font-weight:650;letter-spacing:.2px;margin:0;line-height:1.05}
+  .title p{margin:2px 0 0;color:var(--muted);font-size:12.5px}
+
+  /* KPI chips */
+  .kpis{display:flex;gap:10px;flex-wrap:wrap}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 14px;min-width:96px}
+  .kpi b{display:block;font-size:20px;font-weight:700;line-height:1;color:var(--amber)}
+  .kpi span{display:block;margin-top:4px;font-size:11px;color:var(--muted);letter-spacing:.2px}
+
+  /* Toolbar */
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:4px 0 12px}
+  .ctl{display:flex;align-items:center;gap:6px}
+  .ctl label{font-size:11.5px;color:var(--muted-2)}
+  select,input[type=search]{
+    background:var(--panel);color:var(--ink);border:1px solid var(--line-strong);
+    border-radius:8px;padding:7px 10px;font-size:13px;font-family:inherit;outline:none;
+  }
+  select:focus,input:focus{border-color:var(--amber)}
+  input[type=search]{min-width:170px}
+  .btn{
+    background:var(--panel);color:var(--ink);border:1px solid var(--line-strong);
+    border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer;font-family:inherit;
+  }
+  .btn:hover{border-color:var(--amber)}
+  .btn.accent{border-color:var(--amber);color:var(--amber)}
+
+  /* Legend */
+  .legend{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .lg{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);
+    border-radius:20px;padding:4px 11px 4px 8px;font-size:12px;cursor:pointer;user-select:none;color:var(--muted)}
+  .lg .sw{width:12px;height:12px;border-radius:3px}
+  .lg.on{color:var(--ink);border-color:var(--line-strong)}
+  .lg.off{opacity:.4}
+
+  /* Grid */
+  .board{border:1px solid var(--line-strong);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .scroll{overflow:auto;max-height:64vh;position:relative}
+  .grid{position:relative;font-size:12px}
+
+  .hrow{display:flex;position:sticky;top:0;z-index:6}
+  .corner{width:var(--name-w);min-width:var(--name-w);flex:0 0 var(--name-w);
+    background:var(--panel-2);border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+    position:sticky;left:0;z-index:7;padding:8px 12px;display:flex;align-items:center;color:var(--muted);font-size:11.5px;letter-spacing:.3px}
+  .months{position:relative;background:var(--panel-2);border-bottom:1px solid var(--line-strong);height:38px;flex:0 0 auto}
+  .mlab{position:absolute;top:0;height:38px;display:flex;align-items:center;padding-left:8px;
+    font-size:11.5px;color:var(--muted);border-left:1px solid var(--line);letter-spacing:.4px;text-transform:uppercase}
+  .mlab b{color:var(--ink);font-weight:600}
+
+  .group{display:flex;position:sticky;left:0;z-index:4;background:var(--navy);border-bottom:1px solid var(--line)}
+  .group .gname{width:var(--name-w);min-width:var(--name-w);flex:0 0 var(--name-w);position:sticky;left:0;
+    background:var(--navy);padding:7px 12px;font-size:12px;font-weight:600;letter-spacing:.3px;color:var(--amber);
+    display:flex;align-items:center;justify-content:space-between;gap:8px;border-right:1px solid var(--line-strong)}
+  .group .gpeak{font-size:10.5px;color:var(--muted-2);font-weight:500}
+  .group .gpeak.warn{color:var(--sick)}
+  .group .gfill{flex:1 1 auto;background:var(--navy)}
+
+  .row{display:flex;border-bottom:1px solid var(--line);height:var(--row-h)}
+  .row:hover .name{background:var(--panel-2)}
+  .name{width:var(--name-w);min-width:var(--name-w);flex:0 0 var(--name-w);position:sticky;left:0;z-index:3;
+    background:var(--panel);border-right:1px solid var(--line-strong);
+    display:flex;align-items:center;gap:8px;padding:0 10px 0 14px;overflow:hidden}
+  .name .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px}
+  .name .stn{margin-left:auto;font-size:9.5px;color:var(--muted-2);border:1px solid var(--line);
+    border-radius:4px;padding:1px 5px;letter-spacing:.5px}
+
+  .track{position:relative;flex:0 0 auto;height:var(--row-h)}
+  .mline{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+  .today{position:absolute;top:0;bottom:0;width:2px;background:var(--amber);z-index:2;box-shadow:0 0 8px rgba(245,166,35,.6)}
+  .todaycap{position:absolute;top:2px;transform:translateX(-50%);background:var(--amber);color:#3a2600;
+    font-size:9px;font-weight:700;padding:1px 6px;border-radius:9px;z-index:8;white-space:nowrap}
+
+  .bar{position:absolute;top:5px;height:calc(var(--row-h) - 11px);border-radius:5px;z-index:2;
+    display:flex;align-items:center;padding:0 6px;font-size:10px;color:#0b1220;font-weight:600;
+    overflow:hidden;white-space:nowrap;cursor:pointer;transition:filter .12s}
+  .bar:hover{filter:brightness(1.12)}
+  .bar.pending{opacity:.9;color:var(--ink);
+    background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.16) 0 6px,transparent 6px 12px);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+
+  .empty{padding:40px;text-align:center;color:var(--muted)}
+
+  /* Tooltip */
+  #tip{position:fixed;z-index:50;background:#08182e;border:1px solid var(--line-strong);border-radius:10px;
+    padding:10px 12px;max-width:240px;box-shadow:0 12px 30px rgba(0,0,0,.5);pointer-events:none;display:none;font-size:12px}
+  #tip .t{font-weight:650;margin-bottom:4px}
+  #tip .r{color:var(--muted);margin-top:3px}
+  #tip .pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:10.5px;font-weight:700;color:#0b1220;margin-top:5px}
+  #tip .st{font-size:10.5px;margin-top:5px;color:var(--muted)}
+
+  .foot{margin-top:8px;font-size:11px;color:var(--muted-2);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  /* Scrollbar */
+  .scroll::-webkit-scrollbar{height:12px;width:12px}
+  .scroll::-webkit-scrollbar-track{background:var(--navy)}
+  .scroll::-webkit-scrollbar-thumb{background:#1c3a63;border-radius:8px;border:3px solid var(--navy)}
+  .scroll::-webkit-scrollbar-thumb:hover{background:#264c80}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="title">
+      <div class="rule"></div>
+      <div>
+        <h1>Team Vacation Calendar</h1>
+        <p id="subtitle">OCC Planning · Sangster (MBJ) + Norman Manley (KIN)</p>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b id="kToday">0</b><span>On leave today</span></div>
+      <div class="kpi"><b id="kWeek">0</b><span>Off this week</span></div>
+      <div class="kpi"><b id="kStaff">0</b><span>Staff shown</span></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="ctl"><label>Year</label><select id="fYear"></select></div>
+    <div class="ctl"><label>Station</label>
+      <select id="fStation"><option value="">All</option><option>MBJ</option><option>KIN</option></select>
+    </div>
+    <div class="ctl"><label>Group by</label>
+      <select id="fGroup"><option value="dept">Department</option><option value="station">Station</option></select>
+    </div>
+    <div class="ctl"><label>Dept</label><select id="fDept"><option value="">All</option></select></div>
+    <input type="search" id="fSearch" placeholder="Search name…">
+    <button class="btn accent" id="btnToday">Jump to today</button>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="board">
+    <div class="scroll" id="scroll">
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span id="genNote"></span>
+    <span>Peak badge shows the most people off at once in a group — your coverage risk.</span>
+  </div>
+</div>
+
+<div id="tip"></div>
+
+<script>
+/* ==VACATION_DATA_START== */
+const VACATION_DATA = {
+  "generated": "2026-09-14 09:42",
+  "entries": [
+    {
+      "name": "B. Edwards",
+      "dept": "BMA",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-05-18",
+      "end": "2026-05-29",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "B. Edwards",
+      "dept": "BMA",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-12-21",
+      "end": "2026-12-31",
+      "status": "Pending",
+      "notes": "Holiday period"
+    },
+    {
+      "name": "G. Thomas",
+      "dept": "BMA",
+      "station": "KIN",
+      "type": "Annual",
+      "start": "2026-02-02",
+      "end": "2026-02-13",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "L. Morgan",
+      "dept": "Cabin",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-04-06",
+      "end": "2026-04-17",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "L. Morgan",
+      "dept": "Cabin",
+      "station": "MBJ",
+      "type": "Sick",
+      "start": "2026-09-11",
+      "end": "2026-09-15",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "N. Powell",
+      "dept": "Cabin",
+      "station": "KIN",
+      "type": "Personal",
+      "start": "2026-08-24",
+      "end": "2026-08-26",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "C. Henry",
+      "dept": "Cargo",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-03-16",
+      "end": "2026-03-27",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "C. Henry",
+      "dept": "Cargo",
+      "station": "MBJ",
+      "type": "Training",
+      "start": "2026-09-14",
+      "end": "2026-09-16",
+      "status": "Approved",
+      "notes": "DG recurrent"
+    },
+    {
+      "name": "P. Clarke",
+      "dept": "Cargo",
+      "station": "KIN",
+      "type": "Annual",
+      "start": "2026-06-15",
+      "end": "2026-06-26",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "A. Brown",
+      "dept": "OCC",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-01-06",
+      "end": "2026-01-17",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "A. Brown",
+      "dept": "OCC",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-08-10",
+      "end": "2026-08-21",
+      "status": "Approved",
+      "notes": "Summer block"
+    },
+    {
+      "name": "D. Campbell",
+      "dept": "OCC",
+      "station": "MBJ",
+      "type": "Training",
+      "start": "2026-03-02",
+      "end": "2026-03-06",
+      "status": "Approved",
+      "notes": "IROPS course"
+    },
+    {
+      "name": "D. Campbell",
+      "dept": "OCC",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-09-07",
+      "end": "2026-09-18",
+      "status": "Pending",
+      "notes": ""
+    },
+    {
+      "name": "M. Reid",
+      "dept": "OCC",
+      "station": "KIN",
+      "type": "Annual",
+      "start": "2026-09-09",
+      "end": "2026-09-20",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "K. Gordon",
+      "dept": "Passenger Service",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-02-23",
+      "end": "2026-03-06",
+      "status": "Approved",
+      "notes": "Overlaps S. Palmer"
+    },
+    {
+      "name": "S. Palmer",
+      "dept": "Passenger Service",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-02-16",
+      "end": "2026-02-27",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "S. Palmer",
+      "dept": "Passenger Service",
+      "station": "MBJ",
+      "type": "Sick",
+      "start": "2026-06-03",
+      "end": "2026-06-05",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "T. Williams",
+      "dept": "Passenger Service",
+      "station": "KIN",
+      "type": "Personal",
+      "start": "2026-04-13",
+      "end": "2026-04-15",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "T. Williams",
+      "dept": "Passenger Service",
+      "station": "KIN",
+      "type": "Annual",
+      "start": "2026-11-23",
+      "end": "2026-12-04",
+      "status": "Pending",
+      "notes": ""
+    },
+    {
+      "name": "J. Bailey",
+      "dept": "Ramp",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-07-13",
+      "end": "2026-07-24",
+      "status": "Approved",
+      "notes": "Overlaps R. Foster"
+    },
+    {
+      "name": "J. Bailey",
+      "dept": "Ramp",
+      "station": "MBJ",
+      "type": "Unpaid",
+      "start": "2026-10-05",
+      "end": "2026-10-09",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "O. Grant",
+      "dept": "Ramp",
+      "station": "KIN",
+      "type": "Annual",
+      "start": "2026-05-04",
+      "end": "2026-05-15",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "R. Foster",
+      "dept": "Ramp",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-01-19",
+      "end": "2026-01-30",
+      "status": "Approved",
+      "notes": ""
+    },
+    {
+      "name": "R. Foster",
+      "dept": "Ramp",
+      "station": "MBJ",
+      "type": "Annual",
+      "start": "2026-07-06",
+      "end": "2026-07-17",
+      "status": "Approved",
+      "notes": ""
+    }
+  ]
+};
+/* ==VACATION_DATA_END== */
+
+/* ---------- config ---------- */
+const TYPES = {
+  "Annual":  {color:"var(--annual)"},
+  "Sick":    {color:"var(--sick)"},
+  "Training":{color:"var(--training)"},
+  "Personal":{color:"var(--personal)"},
+  "Unpaid":  {color:"var(--unpaid)"},
+  "Other":   {color:"var(--other)"}
+};
+const DEPT_ORDER = ["OCC","Passenger Service","Ramp","Cabin","BMA","Cargo"];
+const CSS = getComputedStyle(document.documentElement);
+const DAY_W = parseFloat(CSS.getPropertyValue('--day-w'));
+
+/* ---------- helpers ---------- */
+const D = s => { const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); };
+const dayOfYear = (dt,yStart) => Math.round((dt - yStart)/86400000);
+const clamp = (v,a,b) => Math.max(a,Math.min(b,v));
+const fmt = dt => dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+/* ---------- state ---------- */
+const entries = VACATION_DATA.entries.map(e => ({...e, s:D(e.start), e:D(e.end), type: TYPES[e.type]?e.type:"Other"}));
+const years = [...new Set(entries.flatMap(e=>[e.s.getFullYear(), e.e.getFullYear()]))].sort();
+const nowY = new Date().getFullYear();
+let state = {
+  year: years.includes(nowY)?nowY:(years[years.length-1]||nowY),
+  station:"", group:"dept", dept:"", search:"",
+  hiddenTypes:new Set()
+};
+
+/* ---------- build controls ---------- */
+const $ = id => document.getElementById(id);
+years.forEach(y=>{const o=document.createElement('option');o.value=y;o.textContent=y;$('fYear').appendChild(o);});
+$('fYear').value = state.year;
+[...new Set(entries.map(e=>e.dept))].sort((a,b)=>{
+  const ia=DEPT_ORDER.indexOf(a), ib=DEPT_ORDER.indexOf(b);
+  return (ia<0?99:ia)-(ib<0?99:ib) || a.localeCompare(b);
+}).forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d;$('fDept').appendChild(o);});
+
+const legend = $('legend');
+Object.keys(TYPES).forEach(t=>{
+  const el=document.createElement('div'); el.className='lg on'; el.dataset.type=t;
+  el.innerHTML=`<span class="sw" style="background:${TYPES[t].color}"></span>${t}`;
+  el.onclick=()=>{ if(state.hiddenTypes.has(t)){state.hiddenTypes.delete(t);el.className='lg on';}
+                  else{state.hiddenTypes.add(t);el.className='lg off';} render(); };
+  legend.appendChild(el);
+});
+
+$('fYear').onchange   = e=>{state.year=+e.target.value; render();};
+$('fStation').onchange= e=>{state.station=e.target.value; render();};
+$('fGroup').onchange  = e=>{state.group=e.target.value; render();};
+$('fDept').onchange   = e=>{state.dept=e.target.value; render();};
+$('fSearch').oninput  = e=>{state.search=e.target.value.toLowerCase().trim(); render();};
+$('btnToday').onclick = jumpToday;
+
+/* ---------- render ---------- */
+function render(){
+  const y = state.year;
+  const yStart = new Date(y,0,1), yEnd = new Date(y,11,31);
+  const nDays = dayOfYear(yEnd,yStart)+1;
+  const trackW = nDays * DAY_W;
+
+  // filter
+  let rows = entries.filter(e=>{
+    if(e.s.getFullYear()>y || e.e.getFullYear()<y) return false;      // touches this year
+    if(state.station && e.station!==state.station) return false;
+    if(state.dept && e.dept!==state.dept) return false;
+    if(state.hiddenTypes.has(e.type)) return false;
+    if(state.search && !e.name.toLowerCase().includes(state.search)) return false;
+    return true;
+  });
+
+  // group -> person -> entries
+  const groupKey = e => state.group==='station' ? e.station : e.dept;
+  const groups = {};
+  rows.forEach(e=>{ (groups[groupKey(e)] ??= {})[e.name] ??= []; groups[groupKey(e)][e.name].push(e); });
+
+  const orderGroups = Object.keys(groups).sort((a,b)=>{
+    if(state.group==='dept'){const ia=DEPT_ORDER.indexOf(a),ib=DEPT_ORDER.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b);}
+    return a.localeCompare(b);
+  });
+
+  const grid = $('grid'); grid.innerHTML='';
+  grid.style.width = (parseFloat(CSS.getPropertyValue('--name-w'))+trackW)+'px';
+
+  // header: corner + months
+  const hrow=document.createElement('div'); hrow.className='hrow';
+  const corner=document.createElement('div'); corner.className='corner'; corner.textContent = state.group==='station'?'STATION / STAFF':'DEPARTMENT / STAFF';
+  const months=document.createElement('div'); months.className='months'; months.style.width=trackW+'px';
+  for(let m=0;m<12;m++){
+    const x = dayOfYear(new Date(y,m,1),yStart)*DAY_W;
+    const w = dayOfYear(new Date(y,m+1,1),yStart)*DAY_W - x;
+    const lab=document.createElement('div'); lab.className='mlab'; lab.style.left=x+'px'; lab.style.width=w+'px';
+    lab.innerHTML = `<b>${MONTHS[m]}</b>`;
+    months.appendChild(lab);
+  }
+  hrow.appendChild(corner); hrow.appendChild(months); grid.appendChild(hrow);
+
+  // today marker geometry
+  const today = new Date(); today.setHours(0,0,0,0);
+  const todayIn = today.getFullYear()===y;
+  const todayX = todayIn ? dayOfYear(today,yStart)*DAY_W : -1;
+
+  const mlineHTML = () => {
+    let h=''; for(let m=1;m<12;m++){const x=dayOfYear(new Date(y,m,1),yStart)*DAY_W; h+=`<div class="mline" style="left:${x}px"></div>`;}
+    if(todayIn) h+=`<div class="today" style="left:${todayX}px"></div>`;
+    return h;
+  };
+
+  let staffCount=0, offToday=0, offWeek=0;
+  const wkStart=new Date(today); wkStart.setDate(today.getDate()-((today.getDay()+6)%7)); // Monday
+  const wkEnd=new Date(wkStart); wkEnd.setDate(wkStart.getDate()+6);
+
+  orderGroups.forEach(g=>{
+    const people = groups[g];
+    // peak concurrent across the whole group (coverage risk)
+    const peak = peakConcurrent(Object.values(people).flat(), y);
+    const grp=document.createElement('div'); grp.className='group';
+    grp.innerHTML = `<div class="gname"><span>${g}</span><span class="gpeak ${peak>=2?'warn':''}">peak ${peak} off</span></div><div class="gfill" style="width:${trackW}px"></div>`;
+    grid.appendChild(grp);
+
+    Object.keys(people).sort().forEach(name=>{
+      staffCount++;
+      const evs=people[name];
+      const stn=evs[0].station;
+      const row=document.createElement('div'); row.className='row';
+      const nm=document.createElement('div'); nm.className='name';
+      nm.innerHTML=`<span class="nm">${name}</span><span class="stn">${stn}</span>`;
+      const track=document.createElement('div'); track.className='track'; track.style.width=trackW+'px';
+      track.innerHTML = mlineHTML();
+
+      let activeToday=false, activeWeek=false;
+      evs.forEach(ev=>{
+        const s=clamp(dayOfYear(ev.s,yStart),0,nDays);
+        const e2=clamp(dayOfYear(ev.e,yStart)+1,0,nDays); // inclusive end
+        if(e2<=s) return;
+        const bar=document.createElement('div');
+        bar.className='bar'+(ev.status==='Pending'?' pending':'');
+        bar.style.left=(s*DAY_W)+'px';
+        bar.style.width=Math.max((e2-s)*DAY_W,4)+'px';
+        if(ev.status!=='Pending') bar.style.background=TYPES[ev.type].color;
+        else bar.style.background='rgba(255,255,255,.05)';
+        const w=(e2-s)*DAY_W;
+        if(w>52) bar.textContent = ev.type;
+        bindTip(bar, ev);
+        track.appendChild(bar);
+        if(ev.s<=today && today<=ev.e) activeToday=true;
+        if(ev.s<=wkEnd && ev.e>=wkStart) activeWeek=true;
+      });
+      if(activeToday) offToday++;
+      if(activeWeek) offWeek++;
+      row.appendChild(nm); row.appendChild(track); grid.appendChild(row);
+    });
+  });
+
+  if(orderGroups.length===0){
+    grid.innerHTML=''; grid.style.width='100%';
+    const d=document.createElement('div'); d.className='empty';
+    d.textContent='No leave matches these filters.'; grid.appendChild(d);
+  }
+
+  $('kToday').textContent=offToday;
+  $('kWeek').textContent=offWeek;
+  $('kStaff').textContent=staffCount;
+  $('genNote').textContent='Generated: '+VACATION_DATA.generated;
+}
+
+/* max people off at the same time within a set of entries (this year) */
+function peakConcurrent(evs, y){
+  const pts=[];
+  evs.forEach(ev=>{
+    if(ev.s.getFullYear()>y||ev.e.getFullYear()<y) return;
+    pts.push([+ev.s,1]); pts.push([+ev.e+86400000,-1]);
+  });
+  pts.sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  let cur=0,mx=0; pts.forEach(p=>{cur+=p[1]; if(cur>mx)mx=cur;});
+  return mx;
+}
+
+/* ---------- tooltip ---------- */
+const tip=$('tip');
+function bindTip(el, ev){
+  const show=(x,yv)=>{
+    const days=Math.round((ev.e-ev.s)/86400000)+1;
+    tip.innerHTML=`<div class="t">${ev.name}</div>
+      <div class="r">${fmt(ev.s)} – ${fmt(ev.e)} · ${days} day${days>1?'s':''}</div>
+      <div><span class="pill" style="background:${TYPES[ev.type].color}">${ev.type}</span></div>
+      <div class="st">${ev.station} · ${ev.dept} · ${ev.status}${ev.notes?(' · '+ev.notes):''}</div>`;
+    tip.style.display='block';
+    const r=tip.getBoundingClientRect();
+    tip.style.left=clamp(x+14,8,innerWidth-r.width-8)+'px';
+    tip.style.top=clamp(yv+14,8,innerHeight-r.height-8)+'px';
+  };
+  el.addEventListener('mousemove',e=>show(e.clientX,e.clientY));
+  el.addEventListener('mouseleave',()=>tip.style.display='none');
+  el.addEventListener('click',e=>{e.stopPropagation();show(e.clientX,e.clientY);});
+}
+document.addEventListener('click',()=>tip.style.display='none');
+
+/* ---------- jump to today ---------- */
+function jumpToday(){
+  const sc=$('scroll');
+  const yStart=new Date(state.year,0,1);
+  const today=new Date();
+  if(today.getFullYear()!==state.year){ state.year=years.includes(today.getFullYear())?today.getFullYear():state.year; $('fYear').value=state.year; render(); }
+  const x=dayOfYear(new Date(),new Date(state.year,0,1))*DAY_W;
+  sc.scrollTo({left:Math.max(0,x-sc.clientWidth/2),behavior:'smooth'});
+}
+
+render();
+setTimeout(jumpToday,120);
+</script>
+</body>
+</html>
