@@ -187,7 +187,99 @@
 <script>
 /* ==VACATION_DATA_START== */
 const VACATION_DATA = {
-  "generated": "2026-09-14 09:42",
+  "generated": "2026-09-14 10:31",
+  "roster": [
+    {
+      "name": "B. Edwards",
+      "dept": "BMA",
+      "station": "MBJ"
+    },
+    {
+      "name": "G. Thomas",
+      "dept": "BMA",
+      "station": "KIN"
+    },
+    {
+      "name": "E. Dixon",
+      "dept": "Cabin",
+      "station": "MBJ"
+    },
+    {
+      "name": "L. Morgan",
+      "dept": "Cabin",
+      "station": "MBJ"
+    },
+    {
+      "name": "N. Powell",
+      "dept": "Cabin",
+      "station": "KIN"
+    },
+    {
+      "name": "C. Henry",
+      "dept": "Cargo",
+      "station": "MBJ"
+    },
+    {
+      "name": "P. Clarke",
+      "dept": "Cargo",
+      "station": "KIN"
+    },
+    {
+      "name": "A. Brown",
+      "dept": "OCC",
+      "station": "MBJ"
+    },
+    {
+      "name": "D. Campbell",
+      "dept": "OCC",
+      "station": "MBJ"
+    },
+    {
+      "name": "M. Reid",
+      "dept": "OCC",
+      "station": "KIN"
+    },
+    {
+      "name": "V. Salmon",
+      "dept": "OCC",
+      "station": "MBJ"
+    },
+    {
+      "name": "K. Gordon",
+      "dept": "Passenger Service",
+      "station": "MBJ"
+    },
+    {
+      "name": "S. Palmer",
+      "dept": "Passenger Service",
+      "station": "MBJ"
+    },
+    {
+      "name": "T. Williams",
+      "dept": "Passenger Service",
+      "station": "KIN"
+    },
+    {
+      "name": "J. Bailey",
+      "dept": "Ramp",
+      "station": "MBJ"
+    },
+    {
+      "name": "O. Grant",
+      "dept": "Ramp",
+      "station": "KIN"
+    },
+    {
+      "name": "R. Foster",
+      "dept": "Ramp",
+      "station": "MBJ"
+    },
+    {
+      "name": "W. Blake",
+      "dept": "Ramp",
+      "station": "KIN"
+    }
+  ],
   "entries": [
     {
       "name": "B. Edwards",
@@ -455,6 +547,7 @@ const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov
 
 /* ---------- state ---------- */
 const entries = VACATION_DATA.entries.map(e => ({...e, s:D(e.start), e:D(e.end), type: TYPES[e.type]?e.type:"Other"}));
+const roster = (VACATION_DATA.roster || []).map(r => ({name:r.name, dept:r.dept||"Unassigned", station:(r.station||"").toUpperCase()}));
 const years = [...new Set(entries.flatMap(e=>[e.s.getFullYear(), e.e.getFullYear()]))].sort();
 const nowY = new Date().getFullYear();
 let state = {
@@ -495,8 +588,8 @@ function render(){
   const nDays = dayOfYear(yEnd,yStart)+1;
   const trackW = nDays * DAY_W;
 
-  // filter
-  let rows = entries.filter(e=>{
+  // filter leave entries for this year + active filters
+  let evList = entries.filter(e=>{
     if(e.s.getFullYear()>y || e.e.getFullYear()<y) return false;      // touches this year
     if(state.station && e.station!==state.station) return false;
     if(state.dept && e.dept!==state.dept) return false;
@@ -505,10 +598,22 @@ function render(){
     return true;
   });
 
-  // group -> person -> entries
-  const groupKey = e => state.group==='station' ? e.station : e.dept;
+  // build people index: everyone on the roster shows a row (even with no leave),
+  // plus anyone who has entries but isn't on the roster
+  const people = {};
+  const passFilter = p => (!state.station || p.station===state.station)
+                       && (!state.dept || p.dept===state.dept)
+                       && (!state.search || p.name.toLowerCase().includes(state.search));
+  roster.forEach(r=>{ if(passFilter(r)) people[r.name] = {name:r.name, dept:r.dept, station:r.station, evs:[]}; });
+  evList.forEach(e=>{
+    if(!people[e.name]) people[e.name] = {name:e.name, dept:e.dept, station:e.station, evs:[]};
+    people[e.name].evs.push(e);
+  });
+
+  // group -> person
+  const groupKey = p => state.group==='station' ? (p.station||'—') : (p.dept||'Unassigned');
   const groups = {};
-  rows.forEach(e=>{ (groups[groupKey(e)] ??= {})[e.name] ??= []; groups[groupKey(e)][e.name].push(e); });
+  Object.values(people).forEach(p=>{ (groups[groupKey(p)] ??= {})[p.name] = p; });
 
   const orderGroups = Object.keys(groups).sort((a,b)=>{
     if(state.group==='dept'){const ia=DEPT_ORDER.indexOf(a),ib=DEPT_ORDER.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b);}
@@ -547,20 +652,21 @@ function render(){
   const wkEnd=new Date(wkStart); wkEnd.setDate(wkStart.getDate()+6);
 
   orderGroups.forEach(g=>{
-    const people = groups[g];
+    const members = groups[g];
     // peak concurrent across the whole group (coverage risk)
-    const peak = peakConcurrent(Object.values(people).flat(), y);
+    const peak = peakConcurrent(Object.values(members).flatMap(p=>p.evs), y);
     const grp=document.createElement('div'); grp.className='group';
     grp.innerHTML = `<div class="gname"><span>${g}</span><span class="gpeak ${peak>=2?'warn':''}">peak ${peak} off</span></div><div class="gfill" style="width:${trackW}px"></div>`;
     grid.appendChild(grp);
 
-    Object.keys(people).sort().forEach(name=>{
+    Object.keys(members).sort().forEach(name=>{
       staffCount++;
-      const evs=people[name];
-      const stn=evs[0].station;
+      const person=members[name];
+      const evs=person.evs;
+      const stn=person.station;
       const row=document.createElement('div'); row.className='row';
       const nm=document.createElement('div'); nm.className='name';
-      nm.innerHTML=`<span class="nm">${name}</span><span class="stn">${stn}</span>`;
+      nm.innerHTML=`<span class="nm">${name}</span>`+(stn?`<span class="stn">${stn}</span>`:'');
       const track=document.createElement('div'); track.className='track'; track.style.width=trackW+'px';
       track.innerHTML = mlineHTML();
 
