@@ -2298,7 +2298,7 @@
           "week": 4,
           "start": "2026-11-22",
           "end": "2026-11-28",
-          "flights": 113,
+          "flights": 112,
           "note": ""
         },
         {
@@ -2359,28 +2359,28 @@
           "week": 1,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 99,
+          "flights": 98,
           "note": ""
         },
         {
           "week": 2,
           "start": "2026-12-06",
           "end": "2026-12-12",
-          "flights": 136,
+          "flights": 135,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-12-13",
           "end": "2026-12-19",
-          "flights": 147,
+          "flights": 146,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-12-20",
           "end": "2026-12-26",
-          "flights": 159,
+          "flights": 160,
           "note": ""
         },
         {
@@ -2441,42 +2441,42 @@
           "week": 1,
           "start": "2026-12-27",
           "end": "2027-01-02",
-          "flights": 43,
+          "flights": 44,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-01-03",
           "end": "2027-01-09",
-          "flights": 128,
+          "flights": 137,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-01-10",
           "end": "2027-01-16",
-          "flights": 116,
+          "flights": 127,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-01-17",
           "end": "2027-01-23",
-          "flights": 116,
+          "flights": 128,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-01-24",
           "end": "2027-01-30",
-          "flights": 115,
+          "flights": 127,
           "note": ""
         },
         {
           "week": 6,
           "start": "2027-01-31",
           "end": "2027-02-06",
-          "flights": 14,
+          "flights": 15,
           "note": ""
         }
       ]
@@ -2537,28 +2537,28 @@
           "week": 1,
           "start": "2027-01-31",
           "end": "2027-02-06",
-          "flights": 101,
+          "flights": 112,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-02-07",
           "end": "2027-02-13",
-          "flights": 113,
+          "flights": 122,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-02-14",
           "end": "2027-02-20",
-          "flights": 110,
+          "flights": 115,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-02-21",
           "end": "2027-02-27",
-          "flights": 112,
+          "flights": 118,
           "note": ""
         },
         {
@@ -2619,35 +2619,35 @@
           "week": 1,
           "start": "2027-02-28",
           "end": "2027-03-06",
-          "flights": 98,
+          "flights": 103,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-03-07",
           "end": "2027-03-13",
-          "flights": 111,
+          "flights": 116,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-03-14",
           "end": "2027-03-20",
-          "flights": 116,
+          "flights": 121,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-03-21",
           "end": "2027-03-27",
-          "flights": 120,
+          "flights": 126,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-03-28",
           "end": "2027-04-03",
-          "flights": 66,
+          "flights": 70,
           "note": ""
         }
       ]
@@ -2695,41 +2695,41 @@
   },
   "2027-04": {
     "KIN": {
-      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/06.%20June/KIN%20Flight%20Projection.xlsx?web=1",
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/04.%20April/KIN%20Flight%20Projection.xlsx?web=1",
       "weeks": [
         {
           "week": 1,
           "start": "2027-03-28",
           "end": "2027-04-03",
-          "flights": 49,
+          "flights": 54,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-04-04",
           "end": "2027-04-10",
-          "flights": 111,
+          "flights": 119,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-04-11",
           "end": "2027-04-17",
-          "flights": 116,
+          "flights": 117,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-04-18",
           "end": "2027-04-24",
-          "flights": 120,
+          "flights": 117,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-04-25",
           "end": "2027-05-01",
-          "flights": 66,
+          "flights": 100,
           "note": ""
         }
       ]
@@ -2783,7 +2783,7 @@
           "week": 1,
           "start": "2027-04-25",
           "end": "2027-05-01",
-          "flights": 49,
+          "flights": 12,
           "note": ""
         },
         {
@@ -2797,21 +2797,28 @@
           "week": 3,
           "start": "2027-05-09",
           "end": "2027-05-15",
-          "flights": 116,
+          "flights": 111,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-05-16",
           "end": "2027-05-22",
-          "flights": 120,
+          "flights": 111,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-05-23",
           "end": "2027-05-29",
-          "flights": 66,
+          "flights": 114,
+          "note": ""
+        },
+        {
+          "week": 6,
+          "start": "2027-05-30",
+          "end": "2027-06-05",
+          "flights": 32,
           "note": ""
         }
       ]
@@ -2904,6 +2911,46 @@
           "note": ""
         }
       ]
+    },
+    "KIN": {
+      "workbook": "https://johnmenzies.sharepoint.com/:x:/r/teams/MBJOPS/Shared%20Documents/Flight%20Projections/2027/06.%20June/KIN%20Flight%20Projection.xlsx?web=1",
+      "weeks": [
+        {
+          "week": 1,
+          "start": "2027-05-30",
+          "end": "2027-06-05",
+          "flights": 86,
+          "note": ""
+        },
+        {
+          "week": 2,
+          "start": "2027-06-06",
+          "end": "2027-06-12",
+          "flights": 118,
+          "note": ""
+        },
+        {
+          "week": 3,
+          "start": "2027-06-13",
+          "end": "2027-06-19",
+          "flights": 127,
+          "note": ""
+        },
+        {
+          "week": 4,
+          "start": "2027-06-20",
+          "end": "2027-06-26",
+          "flights": 139,
+          "note": ""
+        },
+        {
+          "week": 5,
+          "start": "2027-06-27",
+          "end": "2027-07-03",
+          "flights": 79,
+          "note": ""
+        }
+      ]
     }
   },
   "2027-07": {
@@ -2914,35 +2961,35 @@
           "week": 1,
           "start": "2027-06-27",
           "end": "2027-07-03",
-          "flights": 49,
+          "flights": 60,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-07-04",
           "end": "2027-07-10",
-          "flights": 111,
+          "flights": 139,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-07-11",
           "end": "2027-07-17",
-          "flights": 116,
+          "flights": 139,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-07-18",
           "end": "2027-07-24",
-          "flights": 120,
+          "flights": 139,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-07-25",
           "end": "2027-07-31",
-          "flights": 66,
+          "flights": 139,
           "note": ""
         }
       ]
@@ -2996,35 +3043,35 @@
           "week": 1,
           "start": "2027-08-01",
           "end": "2027-08-07",
-          "flights": 49,
+          "flights": 139,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-08-08",
           "end": "2027-08-14",
-          "flights": 111,
+          "flights": 139,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-08-15",
           "end": "2027-08-21",
-          "flights": 116,
+          "flights": 83,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-08-22",
           "end": "2027-08-28",
-          "flights": 120,
+          "flights": 83,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-08-29",
           "end": "2027-09-04",
-          "flights": 66,
+          "flights": 34,
           "note": ""
         }
       ]
