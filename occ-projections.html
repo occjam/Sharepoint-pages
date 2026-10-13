@@ -500,7 +500,8 @@
       return `<div class="tl-bar ${cls}" style="left:${left}%;width:${width}%;top:${top}px" title="${tip}"><span class="tl-lbl">${label}</span></div>`;
     }).join('');
     // concurrency profile (how many on the ground) + peak window, shown as a strip beneath the bars
-    const evs=[]; items.forEach(it=>{ evs.push({t:it.s,d:1}); evs.push({t:it.e,d:-1}); }); evs.sort((a,b)=>a.t-b.t);
+    const CLASH_BUFFER=12; // minutes a stand stays "occupied" after a departure, so near-misses still count as a clash
+    const evs=[]; items.forEach(it=>{ evs.push({t:it.s,d:1}); evs.push({t:Math.min(1440,it.e+CLASH_BUFFER),d:-1}); }); evs.sort((a,b)=>a.t-b.t);
     const uniq=[...new Set(evs.map(e=>e.t))].sort((a,b)=>a-b);
     let cur=0, ei=0, segs=[], maxC=0;
     for(let i=0;i<uniq.length;i++){ const t=uniq[i]; while(ei<evs.length && evs[ei].t===t){ cur+=evs[ei].d; ei++; } const tn=uniq[i+1]; if(tn!=null){ segs.push([t,tn,cur]); if(cur>maxC) maxC=cur; } }
