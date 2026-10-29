@@ -2659,35 +2659,35 @@
           "week": 1,
           "start": "2027-02-28",
           "end": "2027-03-06",
-          "flights": 235,
+          "flights": 238,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-03-07",
           "end": "2027-03-13",
-          "flights": 281,
+          "flights": 283,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-03-14",
           "end": "2027-03-20",
-          "flights": 290,
+          "flights": 293,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-03-21",
           "end": "2027-03-27",
-          "flights": 285,
+          "flights": 286,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-03-28",
           "end": "2027-04-03",
-          "flights": 157,
+          "flights": 149,
           "note": ""
         }
       ]
