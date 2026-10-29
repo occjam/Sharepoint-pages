@@ -2284,28 +2284,28 @@
           "week": 2,
           "start": "2026-11-08",
           "end": "2026-11-14",
-          "flights": 107,
+          "flights": 108,
           "note": ""
         },
         {
           "week": 3,
           "start": "2026-11-15",
           "end": "2026-11-21",
-          "flights": 112,
+          "flights": 110,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-11-22",
           "end": "2026-11-28",
-          "flights": 116,
+          "flights": 112,
           "note": ""
         },
         {
           "week": 5,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 31,
+          "flights": 32,
           "note": ""
         }
       ]
@@ -2359,7 +2359,7 @@
           "week": 1,
           "start": "2026-11-29",
           "end": "2026-12-05",
-          "flights": 101,
+          "flights": 100,
           "note": ""
         },
         {
@@ -2373,14 +2373,14 @@
           "week": 3,
           "start": "2026-12-13",
           "end": "2026-12-19",
-          "flights": 147,
+          "flights": 148,
           "note": ""
         },
         {
           "week": 4,
           "start": "2026-12-20",
           "end": "2026-12-26",
-          "flights": 162,
+          "flights": 157,
           "note": ""
         },
         {
@@ -2441,42 +2441,42 @@
           "week": 1,
           "start": "2026-12-27",
           "end": "2027-01-02",
-          "flights": 44,
+          "flights": 40,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-01-03",
           "end": "2027-01-09",
-          "flights": 137,
+          "flights": 141,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-01-10",
           "end": "2027-01-16",
-          "flights": 127,
+          "flights": 129,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-01-17",
           "end": "2027-01-23",
-          "flights": 128,
+          "flights": 130,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-01-24",
           "end": "2027-01-30",
-          "flights": 127,
+          "flights": 129,
           "note": ""
         },
         {
           "week": 6,
           "start": "2027-01-31",
           "end": "2027-02-06",
-          "flights": 15,
+          "flights": 17,
           "note": ""
         }
       ]
@@ -2544,28 +2544,28 @@
           "week": 2,
           "start": "2027-02-07",
           "end": "2027-02-13",
-          "flights": 122,
+          "flights": 123,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-02-14",
           "end": "2027-02-20",
-          "flights": 115,
+          "flights": 124,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-02-21",
           "end": "2027-02-27",
-          "flights": 118,
+          "flights": 129,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-02-28",
           "end": "2027-03-06",
-          "flights": 14,
+          "flights": 17,
           "note": ""
         }
       ]
@@ -2619,35 +2619,35 @@
           "week": 1,
           "start": "2027-02-28",
           "end": "2027-03-06",
-          "flights": 103,
+          "flights": 114,
           "note": ""
         },
         {
           "week": 2,
           "start": "2027-03-07",
           "end": "2027-03-13",
-          "flights": 116,
+          "flights": 131,
           "note": ""
         },
         {
           "week": 3,
           "start": "2027-03-14",
           "end": "2027-03-20",
-          "flights": 121,
+          "flights": 137,
           "note": ""
         },
         {
           "week": 4,
           "start": "2027-03-21",
           "end": "2027-03-27",
-          "flights": 126,
+          "flights": 133,
           "note": ""
         },
         {
           "week": 5,
           "start": "2027-03-28",
           "end": "2027-04-03",
-          "flights": 70,
+          "flights": 73,
           "note": ""
         }
       ]
