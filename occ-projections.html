@@ -42,6 +42,11 @@
     margin:16px 2px 22px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--tile);}
   .filters-main{display:flex;flex-direction:column;gap:14px;flex:1 1 auto;min-width:0;}
   .filter-row{display:flex;gap:clamp(10px,1.4vw,18px);flex-wrap:wrap;align-items:flex-end;}
+  .row2{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;}
+  .rightfilters{display:flex;gap:14px;align-items:flex-end;flex:0 0 auto;}
+  .daterange{display:flex;align-items:center;gap:8px;}
+  .darrow{color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+  input[type=date]{background:#0e2238;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-family:'IBM Plex Mono',monospace;font-size:13px;color-scheme:dark;min-width:150px;}
   .week-summary{display:flex;flex-direction:column;align-items:flex-end;gap:18px;text-align:right;flex:0 0 auto;padding-left:8px;}
   .ws-station{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
   .ws-count{display:flex;align-items:center;gap:12px;}
@@ -122,16 +127,16 @@
   .featured + .flights-head{margin-top:26px;}
   .fl-controls{display:flex;align-items:flex-end;gap:16px;margin:0 2px 16px;flex-wrap:wrap;}
   .fl-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em;padding-bottom:11px;}
-  .daytabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 2px 16px;}
-  .filters .daytabs{margin:0;align-self:flex-start;}
-  .daytab{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.05em;padding:8px 13px;border-radius:9px;
-    border:1px solid var(--line);color:var(--muted);background:var(--tile,rgba(255,255,255,.022));cursor:pointer;transition:all .15s ease;text-align:center;line-height:1.3;}
-  .daytab small{display:block;font-size:9.5px;letter-spacing:.14em;opacity:.7;}
-  .daytab:hover{border-color:rgba(246,192,74,.4);color:var(--text);}
-  .daytab.active{background:var(--gold);color:#071120;border-color:var(--gold);font-weight:600;}
-  .daytab.active small{opacity:.75;}
-  .daytab.void{opacity:.4;}
-  .daytab.today::after{content:" •";color:#4ADE80;}
+  .daytabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:5px;flex:1 1 auto;min-width:0;align-self:flex-end;}
+  .daytab{flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:6px 0;width:34px;cursor:pointer;background:var(--tile,rgba(255,255,255,.022));text-align:center;font-family:'IBM Plex Mono',monospace;line-height:1.15;transition:all .15s ease;}
+  .daytab .dow{display:block;color:var(--muted);font-size:8.5px;letter-spacing:.03em;}
+  .daytab .dnum{display:block;font-size:14px;font-weight:600;margin-top:2px;}
+  .daytab:hover{border-color:rgba(246,192,74,.4);}
+  .daytab.active{background:var(--gold);color:#071120;border-color:var(--gold);} .daytab.active .dow{color:#071120;}
+  .daytab.wknd{background:rgba(78,168,255,.06);} .daytab.void{opacity:.4;}
+  .daytab.today .dnum::after{content:" •";color:#4ADE80;font-size:10px;} .daytab.active.today .dnum::after{color:#071120;}
+  .monsep{flex:0 0 auto;display:flex;align-items:center;padding:0 7px;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--gold);opacity:.85;}
+  .daytabs::-webkit-scrollbar{height:7px;} .daytabs::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:5px;} .daytabs::-webkit-scrollbar-thumb{background:rgba(246,192,74,.28);border-radius:5px;}
   .ftable{border:1px solid var(--line);border-radius:12px;overflow-x:auto;background:rgba(255,255,255,.015);width:100%;}
   .frow{display:grid;grid-template-columns:110px 46px minmax(108px,0.9fr) 64px 64px minmax(158px,1.5fr) minmax(158px,1.5fr) 66px minmax(96px,0.9fr);align-items:center;gap:10px;padding:0 16px;min-width:960px;}
   .fhead{height:38px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;
@@ -228,12 +233,18 @@
           <div class="selwrap"><select id="fYear"></select></div></label>
         <label class="filter"><span class="flabel">Month</span>
           <div class="selwrap"><select id="fMonth"></select></div></label>
-        <label class="filter"><span class="flabel">Week</span>
-          <div class="selwrap"><select id="fWeek" style="min-width:80px"></select></div></label>
-        <label class="filter"><span class="flabel">Airline</span>
-          <div class="selwrap"><select id="fAirline"><option value="ALL">All airlines</option></select></div></label>
+        <div class="filter"><span class="flabel">Date range</span>
+          <div class="daterange"><input type="date" id="fFrom"><span class="darrow">&rarr;</span><input type="date" id="fTo"></div></div>
       </div>
-      <div class="daytabs" id="daytabs"></div>
+      <div class="row2">
+        <div class="daytabs" id="daytabs"></div>
+        <div class="rightfilters">
+          <label class="filter"><span class="flabel">Airline</span>
+            <div class="selwrap"><select id="fAirline"><option value="ALL">All airlines</option></select></div></label>
+          <label class="filter"><span class="flabel">Category</span>
+            <div class="selwrap"><select id="fCategory"><option value="ALL">All flights</option><option value="PAX">Pax</option><option value="CGO">Cargo</option></select></div></label>
+        </div>
+      </div>
     </div>
     <div class="week-summary" id="weekSummary"></div>
   </div>
@@ -314,33 +325,32 @@
 
   let ALL = {};
 
-  function weeksList(){
-    const period = fYear.value + '-' + fMonth.value, station = fStation.value;
-    const so = (ALL[period]||{})[station];
-    return so ? (so.weeks||[]).slice().sort((a,b)=>a.week-b.week) : null;
+  // ---- date-range helpers ----
+  const lastDay=(y,m)=>new Date(y,m,0).getDate();                    // m = 1..12
+  function monthBounds(period){ const y=+period.slice(0,4), m=+period.slice(5,7); return [period+'-01', period+'-'+String(lastDay(y,m)).padStart(2,'0')]; }
+  function daysInRange(a,b){ const out=[]; let x=a,g=0; while(x<=b && g<400){ out.push(x); x=addDays(x,1); g++; } return out; }
+  function monthsInRange(a,b){ const s=new Set(); daysInRange(a,b).forEach(d=>s.add(d.slice(0,7))); return [...s]; }
+  function defaultRange(){
+    const period=fYear.value+'-'+fMonth.value, [a,b]=monthBounds(period);
+    const fFrom=document.getElementById('fFrom'), fTo=document.getElementById('fTo');
+    fFrom.value=a; fTo.value=b;
+    const y=+period.slice(0,4); fFrom.min=fTo.min=(y-1)+'-01-01'; fFrom.max=fTo.max=(y+1)+'-12-31';
   }
-  function populateWeeks(preferWeek){
-    const fWeek=document.getElementById('fWeek');
-    const list=weeksList();
-    if(!list || !list.length){ fWeek.innerHTML=''; return; }
-    fWeek.innerHTML=list.map(w=>`<option value="${w.week}">Week ${w.week} · ${fmtRange(w.start,w.end)}</option>`).join('');
-    const cur=pickCurrent(list);
-    const def = (preferWeek && list.some(w=>w.week===+preferWeek)) ? +preferWeek : (cur?cur.week:list[0].week);
-    fWeek.value=def;
+  function onRangeChange(){
+    const fFrom=document.getElementById('fFrom'), fTo=document.getElementById('fTo');
+    if(fTo.value && fFrom.value && fTo.value<fFrom.value) fTo.value=fFrom.value;
+    render();
   }
   function render(){
     const period = fYear.value + '-' + fMonth.value, station = fStation.value;
-    const app = document.getElementById('app'), fWeek=document.getElementById('fWeek'), daytabsEl=document.getElementById('daytabs'), wsEl=document.getElementById('weekSummary');
+    const app = document.getElementById('app'), daytabsEl=document.getElementById('daytabs'), wsEl=document.getElementById('weekSummary');
     const so = (ALL[period]||{})[station];
     if(!so){
       app.innerHTML = '<div class="empty">No projection published for '+(MONTHF[+fMonth.value-1]||'')+' '+fYear.value+' yet.</div>';
-      if(fWeek) fWeek.innerHTML=''; if(daytabsEl) daytabsEl.innerHTML=''; if(wsEl) wsEl.innerHTML='';
+      if(daytabsEl) daytabsEl.innerHTML=''; if(wsEl) wsEl.innerHTML='';
       return;
     }
     const list=(so.weeks||[]).slice().sort((a,b)=>a.week-b.week);
-    const week=list.find(w=>w.week===+fWeek.value) || pickCurrent(list) || list[0];
-    const tw = todayWeek(list);
-    const isCur = tw && week && tw.week===week.week;
     const wb = so.workbook || '#';
     const monthTotal = list.reduce((s,w)=> s + (w.flights||0), 0);
     const anyData = list.some(w=> w.flights!=null);
@@ -349,40 +359,60 @@
       <div class="ws-count"><b>${anyData?monthTotal:'—'}</b><div class="ws-lbl"><span>Flights</span>${isCurMonth?'<small>this month</small>':''}</div></div>
       ${(wb&&wb!=='#')?`<a class="ws-open" href="${wb}" target="_blank" rel="noopener">Open workbook →</a>`:'<span class="ws-open disabled">Workbook pending</span>'}`;
     app.innerHTML = '<div id="daypanel"></div>';
-    fillDays(station, period, week);
+    fillDays(station, period);
   }
   let VIEW_MODE='list';
   let AIRLINE_FILTER='ALL';
-  async function fillDays(station, period, week){
-    const daytabsEl=document.getElementById('daytabs'), panel=document.getElementById('daypanel'), fAirline=document.getElementById('fAirline');
-    const all=await loadFlights(period);
+  let CATEGORY_FILTER='ALL';   // ALL | PAX | CGO  (Cargo = service type CGO; everything else = Pax)
+  let SELECTED_DAY=null;       // preserve the chosen day across refreshes / filter changes
+  async function fillDays(station, period){
+    const daytabsEl=document.getElementById('daytabs'), panel=document.getElementById('daypanel'),
+          fAirline=document.getElementById('fAirline'), fCategory=document.getElementById('fCategory'),
+          fFrom=document.getElementById('fFrom'), fTo=document.getElementById('fTo');
+    const from=fFrom.value, to=fTo.value;
+    const days=daysInRange(from,to);
+    const all=await loadMonths(monthsInRange(from,to));
     const F=all[station]||{};
-    const days=[...Array(7)].map((_,i)=>addDays(week.start,i));
-    // airlines flying this station this month → dropdown options
-    const airlines=[...new Set(Object.keys(F).filter(iso=>iso.startsWith(period)).flatMap(iso=>F[iso].map(f=>f.airline)).filter(Boolean))].sort();
+    const monthData=(await loadMonths([period]))[station]||{};   // full active month, for the summary count
+    const catOf=f=>typeCls(f.type)==='cgo'?'CGO':'PAX';
+    // airlines appearing in the selected range → dropdown options
+    const airlines=[...new Set(days.flatMap(iso=>(F[iso]||[]).map(f=>f.airline)).filter(Boolean))].sort();
     if(fAirline){
       if(AIRLINE_FILTER!=='ALL' && !airlines.includes(AIRLINE_FILTER)) AIRLINE_FILTER='ALL';
       fAirline.innerHTML='<option value="ALL">All airlines</option>'+airlines.map(a=>`<option value="${a}">${a}</option>`).join('');
       fAirline.value=AIRLINE_FILTER;
       fAirline.onchange=()=>{ AIRLINE_FILTER=fAirline.value; renderTabs(); paint(); updateSummary(); };
     }
-    const filt=arr=>AIRLINE_FILTER==='ALL'?arr:arr.filter(f=>f.airline===AIRLINE_FILTER);
-    // station month total, to restore the summary when the filter is cleared
+    if(fCategory){
+      fCategory.value=CATEGORY_FILTER;
+      fCategory.onchange=()=>{ CATEGORY_FILTER=fCategory.value; renderTabs(); paint(); updateSummary(); };
+    }
+    const filt=arr=>arr.filter(f=>(AIRLINE_FILTER==='ALL'||f.airline===AIRLINE_FILTER)&&(CATEGORY_FILTER==='ALL'||catOf(f)===CATEGORY_FILTER));
     const so=(ALL[period]||{})[station]||{}; const stationTotal=(so.weeks||[]).reduce((s,w)=>s+(w.flights||0),0);
     const isCurMonth=(period===CUR_PERIOD);
     function updateSummary(){
       const wsEl=document.getElementById('weekSummary'); if(!wsEl) return;
       const b=wsEl.querySelector('.ws-count b'), lbl=wsEl.querySelector('.ws-lbl'); if(!b||!lbl) return;
-      if(AIRLINE_FILTER==='ALL'){ b.textContent=stationTotal; lbl.innerHTML='<span>Flights</span>'+(isCurMonth?'<small>this month</small>':''); }
-      else { let c=0; for(const iso in F){ if(iso.startsWith(period)) c+=F[iso].filter(f=>f.airline===AIRLINE_FILTER && !f.cont).length; } b.textContent=c; lbl.innerHTML='<span>'+AIRLINE_FILTER+'</span>'+(isCurMonth?'<small>this month</small>':''); }
+      if(AIRLINE_FILTER==='ALL' && CATEGORY_FILTER==='ALL'){ b.textContent=stationTotal; lbl.innerHTML='<span>Flights</span>'+(isCurMonth?'<small>this month</small>':''); }
+      else {
+        let c=0; for(const iso in monthData){ if(iso.startsWith(period)) c+=monthData[iso].filter(f=>!f.cont && (AIRLINE_FILTER==='ALL'||f.airline===AIRLINE_FILTER) && (CATEGORY_FILTER==='ALL'||catOf(f)===CATEGORY_FILTER)).length; }
+        b.textContent=c;
+        const tag=[AIRLINE_FILTER!=='ALL'?AIRLINE_FILTER:null, CATEGORY_FILTER==='CGO'?'Cargo':CATEGORY_FILTER==='PAX'?'Pax':null].filter(Boolean).join(' · ');
+        lbl.innerHTML='<span>'+tag+'</span>'+(isCurMonth?'<small>this month</small>':'');
+      }
     }
     let curIso=null;
     function renderTabs(){
-      daytabsEl.innerHTML=days.map(iso=>{
-        const d=new Date(iso+'T00:00'); const isT=iso===todayJM; const n=filt(F[iso]||[]).length;
-        return `<div class="daytab${isT?' today':''}${n?'':' void'}${iso===curIso?' active':''}" data-day="${iso}">${DOW[d.getDay()]} <small>${d.getDate()} ${MON3[d.getMonth()]}</small></div>`;
-      }).join('');
+      let prevMon=null, html='';
+      days.forEach(iso=>{
+        const d=new Date(iso+'T00:00'), dow=d.getDay(), isT=iso===todayJM, n=filt(F[iso]||[]).length;
+        if(d.getMonth()!==prevMon){ html+='<div class="monsep">'+MON3[d.getMonth()].toUpperCase()+'</div>'; prevMon=d.getMonth(); }
+        const wknd=(dow===0||dow===6)?' wknd':'';
+        html+=`<div class="daytab${isT?' today':''}${n?'':' void'}${iso===curIso?' active':''}${wknd}" data-day="${iso}"><span class="dow">${DOW[dow].slice(0,2)}</span><span class="dnum">${d.getDate()}</span></div>`;
+      });
+      daytabsEl.innerHTML=html;
       daytabsEl.querySelectorAll('.daytab').forEach(t=>t.addEventListener('click',()=>showDay(t.dataset.day)));
+      const act=daytabsEl.querySelector('.daytab.active'); if(act) daytabsEl.scrollLeft=act.offsetLeft-daytabsEl.clientWidth/2+act.clientWidth/2;
     }
     function paint(){
       if(!panel) return;
@@ -394,9 +424,10 @@
       panel.innerHTML = toggle + body;
       panel.querySelectorAll('.vbtn').forEach(b=>b.addEventListener('click',()=>{ VIEW_MODE=b.dataset.v; paint(); }));
     }
-    function showDay(iso){ curIso=iso; renderTabs(); paint(); }
+    function showDay(iso){ curIso=iso; SELECTED_DAY=iso; renderTabs(); paint(); }
     renderTabs();
-    showDay(days.includes(todayJM)?todayJM:days[0]);
+    const def=(SELECTED_DAY && days.includes(SELECTED_DAY)) ? SELECTED_DAY : (days.includes(todayJM)?todayJM:(days[0]||todayJM));
+    showDay(def);
     updateSummary();
   }
 
@@ -412,39 +443,23 @@
   const cityOf=c=>AIRPORTS[c]||'';
   const portCell=(code)=>{ const city=cityOf(code); return code+(city?' <span class="fcity">'+city+'</span>':''); };
   const flightCache={};
-  function adjMonths(period){
-    const [y,m]=period.split('-').map(Number);
-    const fmt=(yy,mm)=>yy+'-'+String(mm).padStart(2,'0');
-    const pm = m===1?[y-1,12]:[y,m-1], nm = m===12?[y+1,1]:[y,m+1];
-    return [fmt(pm[0],pm[1]), period, fmt(nm[0],nm[1])];   // prev, current, next
-  }
-  async function loadFlights(period){
-    if(flightCache[period]) return flightCache[period];
-    const merged={};   // station -> date -> entries (each date lives in exactly one month file, so no dupes)
-    for(const p of adjMonths(period)){
-      let data=null;
-      try{ const r=await fetch('flights-'+p+'.json?t='+Date.now(),{cache:'no-store'}); if(r.ok) data=await r.json(); }catch(e){}
-      if(!data) data=FLIGHT_FALLBACK[p]||null;
+  async function loadMonths(months){
+    const merged={};   // station -> date -> entries   (each date lives in exactly one month file)
+    for(const p of months){
+      let data=flightCache[p];
+      if(data===undefined){
+        data=null;
+        try{ const r=await fetch('flights-'+p+'.json?t='+Date.now(),{cache:'no-store'}); if(r.ok) data=await r.json(); }catch(e){}
+        if(!data) data=FLIGHT_FALLBACK[p]||null;
+        flightCache[p]=data;   // cache the month file (may be null)
+      }
       if(!data) continue;
       for(const stn in data){
         const dst=merged[stn]||(merged[stn]={});
         for(const date in data[stn]){ (dst[date]||(dst[date]=[])).push(...data[stn][date]); }
       }
     }
-    flightCache[period]=merged;
     return merged;
-  }
-  function flightListShell(weeks){
-    const list=(weeks||[]).slice().sort((a,b)=>a.week-b.week);
-    const opts=list.map(w=>`<option value="${w.week}">Week ${w.week} · ${fmtRange(w.start,w.end)}</option>`).join('');
-    return `<div class="flights-head">Flight List</div>
-      <div class="fl-controls">
-        <label class="filter"><span class="flabel">Week</span>
-          <div class="selwrap"><select id="flWeek" style="min-width:210px">${opts}</select></div></label>
-        <span class="fl-hint">Pick a week, then a day</span>
-      </div>
-      <div class="daytabs" id="daytabs"></div>
-      <div id="daypanel"></div>`;
   }
   function routeStr(f){
     if(f.from && f.to) return f.from+' → '+f.to;
@@ -549,34 +564,6 @@
       <div class="fbody">${rows}</div></div>
       <div class="fcount">${list.length} movements</div>`;
   }
-  async function wireFlightList(station, period, weeks){
-    const all=await loadFlights(period);
-    const F=(all[station])||{};
-    const list=(weeks||[]).slice().sort((a,b)=>a.week-b.week);
-    const weekSel=document.getElementById('flWeek');
-    const tabsEl=document.getElementById('daytabs');
-    const panel=document.getElementById('daypanel');
-    if(!weekSel) return;
-    const daysOf=wn=>{const wk=list.find(w=>w.week===wn); return wk?[...Array(7)].map((_,i)=>addDays(wk.start,i)):[];};
-    function showDay(iso){
-      tabsEl.querySelectorAll('.daytab').forEach(t=>t.classList.toggle('active',t.dataset.day===iso));
-      panel.innerHTML=dayPanel(F[iso]);
-    }
-    function renderTabs(wn){
-      tabsEl.innerHTML=daysOf(wn).map(iso=>{
-        const d=new Date(iso+'T00:00'); const isT=iso===todayJM; const n=(F[iso]||[]).length;
-        return `<div class="daytab${isT?' today':''}${n?'':' void'}" data-day="${iso}">${DOW[d.getDay()]} <small>${d.getDate()} ${MON3[d.getMonth()]}</small></div>`;
-      }).join('');
-      tabsEl.querySelectorAll('.daytab').forEach(t=>t.addEventListener('click',()=>showDay(t.dataset.day)));
-    }
-    weekSel.addEventListener('change',e=>{
-      const wn=+e.target.value; renderTabs(wn);
-      const days=daysOf(wn); showDay(days.includes(todayJM)?todayJM:days[0]);
-    });
-    const cur=pickCurrent(list);
-    weekSel.value=cur.week; renderTabs(cur.week);
-    const days=daysOf(cur.week); showDay(days.includes(todayJM)?todayJM:days[0]);
-  }
 
   const fYear=document.getElementById('fYear'),
         fMonth=document.getElementById('fMonth'),
@@ -608,15 +595,15 @@
     // remember the employee's last station (per browser)
     try{ const s=localStorage.getItem('occ_station'); if(s==='MBJ'||s==='KIN') fStation.value=s; }catch(e){}
 
-    const fWeek=document.getElementById('fWeek');
+    defaultRange();   // range defaults to the whole active month
     if(!window.__filtersWired){
-      fStation.addEventListener('change', ()=>{ try{ localStorage.setItem('occ_station', fStation.value); }catch(e){} populateWeeks(); render(); });
-      fYear.addEventListener('change', ()=>{ populateMonths(fYear.value); populateWeeks(); render(); });
-      fMonth.addEventListener('change', ()=>{ populateWeeks(); render(); });
-      fWeek.addEventListener('change', render);
+      fStation.addEventListener('change', ()=>{ try{ localStorage.setItem('occ_station', fStation.value); }catch(e){} defaultRange(); render(); });
+      fYear.addEventListener('change', ()=>{ populateMonths(fYear.value); defaultRange(); render(); });
+      fMonth.addEventListener('change', ()=>{ defaultRange(); render(); });
+      document.getElementById('fFrom').addEventListener('change', onRangeChange);
+      document.getElementById('fTo').addEventListener('change', onRangeChange);
       window.__filtersWired = true;
     }
-    populateWeeks();
     render();
   }
 
@@ -635,7 +622,7 @@
   setInterval(async()=>{
     const now = jamaicaToday();
     const rolled = (now !== todayJM);
-    if(rolled){ todayJM = now; CUR_PERIOD = now.slice(0,7); }
+    if(rolled){ todayJM = now; CUR_PERIOD = now.slice(0,7); SELECTED_DAY = null; }
     try{
       const r=await fetch(CONFIG.endpoint+'?t='+Date.now(),{cache:'no-store'});
       if(r.ok){ const d=await r.json(); if(d&&Object.keys(d).length) ALL=d; }
