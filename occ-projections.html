@@ -42,8 +42,8 @@
     margin:16px 2px 22px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--tile);}
   .filters-main{display:flex;flex-direction:column;gap:14px;flex:1 1 auto;min-width:0;}
   .filter-row{display:flex;gap:clamp(10px,1.4vw,18px);flex-wrap:wrap;align-items:flex-end;}
-  .row2{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;}
-  .rightfilters{display:flex;gap:14px;align-items:flex-end;flex:0 0 auto;}
+  .rightcol{display:flex;flex-direction:column;align-items:flex-end;gap:18px;flex:0 0 auto;}
+  .rightfilters{display:flex;gap:14px;align-items:flex-end;justify-content:flex-end;}
   .daterange{display:flex;align-items:center;gap:8px;}
   .darrow{color:var(--muted);font-family:'IBM Plex Mono',monospace;}
   input[type=date]{background:#0e2238;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-family:'IBM Plex Mono',monospace;font-size:13px;color-scheme:dark;min-width:150px;}
@@ -127,7 +127,7 @@
   .featured + .flights-head{margin-top:26px;}
   .fl-controls{display:flex;align-items:flex-end;gap:16px;margin:0 2px 16px;flex-wrap:wrap;}
   .fl-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em;padding-bottom:11px;}
-  .daytabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:5px;flex:1 1 auto;min-width:0;align-self:flex-end;}
+  .daytabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:5px;max-width:600px;}   /* ~14 days visible, scroll beyond */
   .daytab{flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:6px 0;width:34px;cursor:pointer;background:var(--tile,rgba(255,255,255,.022));text-align:center;font-family:'IBM Plex Mono',monospace;line-height:1.15;transition:all .15s ease;}
   .daytab .dow{display:block;color:var(--muted);font-size:8.5px;letter-spacing:.03em;}
   .daytab .dnum{display:block;font-size:14px;font-weight:600;margin-top:2px;}
@@ -236,17 +236,17 @@
         <div class="filter"><span class="flabel">Date range</span>
           <div class="daterange"><input type="date" id="fFrom"><span class="darrow">&rarr;</span><input type="date" id="fTo"></div></div>
       </div>
-      <div class="row2">
-        <div class="daytabs" id="daytabs"></div>
-        <div class="rightfilters">
-          <label class="filter"><span class="flabel">Airline</span>
-            <div class="selwrap"><select id="fAirline"><option value="ALL">All airlines</option></select></div></label>
-          <label class="filter"><span class="flabel">Category</span>
-            <div class="selwrap"><select id="fCategory"><option value="ALL">All flights</option><option value="PAX">Pax</option><option value="CGO">Cargo</option></select></div></label>
-        </div>
-      </div>
+      <div class="daytabs" id="daytabs"></div>
     </div>
-    <div class="week-summary" id="weekSummary"></div>
+    <div class="rightcol">
+      <div class="rightfilters">
+        <label class="filter"><span class="flabel">Airline</span>
+          <div class="selwrap"><select id="fAirline"><option value="ALL">All airlines</option></select></div></label>
+        <label class="filter"><span class="flabel">Category</span>
+          <div class="selwrap"><select id="fCategory"><option value="ALL">All flights</option><option value="PAX">Pax</option><option value="CGO">Cargo</option></select></div></label>
+      </div>
+      <div class="week-summary" id="weekSummary"></div>
+    </div>
   </div>
 
   <div id="app"></div>
