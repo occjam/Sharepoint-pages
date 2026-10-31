@@ -40,7 +40,7 @@
   /* filter bar */
   .filters{display:flex;gap:clamp(14px,2vw,28px);flex-wrap:wrap;align-items:flex-start;justify-content:space-between;
     margin:16px 2px 22px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--tile);}
-  .filters-main{display:flex;flex-direction:column;gap:14px;flex:1 1 auto;min-width:0;}
+  .filters-main{display:flex;flex-direction:column;gap:12px;flex:0 1 auto;min-width:0;}
   .filter-row{display:flex;gap:clamp(10px,1.4vw,18px);flex-wrap:wrap;align-items:flex-end;}
   .rightcol{display:flex;flex-direction:column;align-items:flex-end;gap:18px;flex:0 0 auto;}
   .rightfilters{display:flex;gap:14px;align-items:flex-end;justify-content:flex-end;}
@@ -127,10 +127,12 @@
   .featured + .flights-head{margin-top:26px;}
   .fl-controls{display:flex;align-items:flex-end;gap:16px;margin:0 2px 16px;flex-wrap:wrap;}
   .fl-hint{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.05em;padding-bottom:11px;}
-  .daytabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:5px;max-width:600px;}   /* ~14 days visible, scroll beyond */
+  .daytabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:5px;max-width:calc(34px*14 + 5px*13);}   /* exactly 14 days visible, scroll beyond */
   .daytab{flex:0 0 auto;border:1px solid var(--line);border-radius:8px;padding:6px 0;width:34px;cursor:pointer;background:var(--tile,rgba(255,255,255,.022));text-align:center;font-family:'IBM Plex Mono',monospace;line-height:1.15;transition:all .15s ease;}
   .daytab .dow{display:block;color:var(--muted);font-size:8.5px;letter-spacing:.03em;}
-  .daytab .dnum{display:block;font-size:14px;font-weight:600;margin-top:2px;}
+  .daytab .dnum{display:block;font-size:14px;font-weight:600;margin-top:1px;}
+  .daytab .dmon{display:block;color:var(--gold);font-size:7.5px;letter-spacing:.06em;margin-top:1px;opacity:.85;}
+  .daytab.active .dmon{color:#071120;opacity:.9;}
   .daytab:hover{border-color:rgba(246,192,74,.4);}
   .daytab.active{background:var(--gold);color:#071120;border-color:var(--gold);} .daytab.active .dow{color:#071120;}
   .daytab.wknd{background:rgba(78,168,255,.06);} .daytab.void{opacity:.4;}
@@ -233,6 +235,8 @@
           <div class="selwrap"><select id="fYear"></select></div></label>
         <label class="filter"><span class="flabel">Month</span>
           <div class="selwrap"><select id="fMonth"></select></div></label>
+      </div>
+      <div class="filter-row">
         <div class="filter"><span class="flabel">Date range</span>
           <div class="daterange"><input type="date" id="fFrom"><span class="darrow">&rarr;</span><input type="date" id="fTo"></div></div>
       </div>
@@ -403,12 +407,11 @@
     }
     let curIso=null;
     function renderTabs(){
-      let prevMon=null, html='';
+      let html='';
       days.forEach(iso=>{
         const d=new Date(iso+'T00:00'), dow=d.getDay(), isT=iso===todayJM, n=filt(F[iso]||[]).length;
-        if(d.getMonth()!==prevMon){ html+='<div class="monsep">'+MON3[d.getMonth()].toUpperCase()+'</div>'; prevMon=d.getMonth(); }
         const wknd=(dow===0||dow===6)?' wknd':'';
-        html+=`<div class="daytab${isT?' today':''}${n?'':' void'}${iso===curIso?' active':''}${wknd}" data-day="${iso}"><span class="dow">${DOW[dow].slice(0,2)}</span><span class="dnum">${d.getDate()}</span></div>`;
+        html+=`<div class="daytab${isT?' today':''}${n?'':' void'}${iso===curIso?' active':''}${wknd}" data-day="${iso}"><span class="dow">${DOW[dow].slice(0,2)}</span><span class="dnum">${d.getDate()}</span><span class="dmon">${MON3[d.getMonth()].toUpperCase()}</span></div>`;
       });
       daytabsEl.innerHTML=html;
       daytabsEl.querySelectorAll('.daytab').forEach(t=>t.addEventListener('click',()=>showDay(t.dataset.day)));
