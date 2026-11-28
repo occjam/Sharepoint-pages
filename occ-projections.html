@@ -491,11 +491,13 @@
       const act=daytabsEl.querySelector('.daytab.active'); if(act) daytabsEl.scrollLeft=act.offsetLeft-daytabsEl.clientWidth/2+act.clientWidth/2;
     }
     function overview(list){
-      let arr=0,dep=0,pax=0,cgo=0,wbm=0;
+      let arr=0,dep=0,pax=0,cgo=0,wbm=0,ta=0,orig=0,term=0;
       const Ha=Array(24).fill(0),Hd=Array(24).fill(0),H=Array(24).fill(0);
-      list.forEach(f=>{const isCgo=catOf(f)==='CGO',isWb=wb(f.acft);
-        if(f.sta){arr++;isCgo?cgo++:pax++;if(isWb)wbm++;const hh=+String(f.sta).slice(0,2);if(hh>=0&&hh<24){Ha[hh]++;H[hh]++;}}
-        if(f.std){dep++;isCgo?cgo++:pax++;if(isWb)wbm++;const hh=+String(f.std).slice(0,2);if(hh>=0&&hh<24){Hd[hh]++;H[hh]++;}}
+      list.forEach(f=>{const isCgo=catOf(f)==='CGO',isWb=wb(f.acft),hasA=!!f.sta,hasD=!!f.std; if(isWb)wbm++;
+        if(isCgo)cgo++; else pax++;                                   // pax/cargo counted per aircraft, not per movement
+        if(hasA&&hasD)ta++; else if(hasD)orig++; else if(hasA)term++; // turnaround / originator (dep-only) / terminator (arr-only)
+        if(hasA){arr++;const hh=+String(f.sta).slice(0,2);if(hh>=0&&hh<24){Ha[hh]++;H[hh]++;}}
+        if(hasD){dep++;const hh=+String(f.std).slice(0,2);if(hh>=0&&hh<24){Hd[hh]++;H[hh]++;}}
       });
       const mov=arr+dep; let peak=0; for(let i=1;i<24;i++) if(H[i]>H[peak])peak=i;
       const maxH=Math.max(1,...H);
@@ -506,9 +508,9 @@
       const axis=Array.from({length:24},(_,hh)=>`<span>${hh%3===0?String(hh).padStart(2,'0'):''}</span>`).join('');
       const peakLbl=mov?String(peak).padStart(2,'0')+':00':'\u2014';
       const kpi=(v,l,lead)=>`<div class="kpi${lead?' lead':''}"><div class="kv">${v}</div><div class="kl">${l}</div></div>`;
-      const sum=`${mov} mov \u00b7 ${arr} arr / ${dep} dep \u00b7 pk ${peakLbl}`;
+      const sum=`${ta} T/A \u00b7 ${orig} orig / ${term} term \u00b7 pk ${peakLbl}`;
       return `<div class="ov${OV_COLLAPSED?' collapsed':''}" id="ovBand"><button class="ov-head" id="ovToggle" type="button"><span class="ov-chev">\u25be</span><span class="ov-h-title">Day overview</span><span class="ov-h-sum">${sum}</span></button><div class="ov-body"><div class="kpis">`
-        +kpi(mov,'Movements',1)+kpi(arr,'Arrivals')+kpi(dep,'Departures')
+        +kpi(ta,'Turnarounds',1)+kpi(orig,'Originators')+kpi(term,'Terminators')
         +kpi(pax+' <small>/ '+cgo+'</small>','Pax / Cargo')+kpi(wbm,'Widebody')+kpi(peakLbl,'Busiest hour',1)
         +`</div><div class="hourchart"><div class="hc-top"><div class="hc-title">Movements by hour</div>`
         +`<div class="hc-legend"><span><i style="background:#2EC4B6"></i>Arrivals</span><span><i style="background:var(--gold,#F6C04A)"></i>Departures</span></div></div>`
