@@ -287,6 +287,19 @@
   .hc-axis{display:flex;gap:2px;margin-top:5px;}
   .hc-axis span{flex:1;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:var(--muted);}
   .wbtag{display:inline-block;margin-left:6px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:600;letter-spacing:.05em;color:#9AD8FF;border:1px solid rgba(88,192,240,.4);border-radius:4px;padding:1px 4px;vertical-align:1px;}
+  .msel{position:relative;}
+  .msel-btn{appearance:none;-webkit-appearance:none;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.03em;color:var(--text);background:var(--ink-2);border:1px solid var(--line);border-radius:9px;padding:10px 34px 10px 14px;min-width:150px;width:100%;cursor:pointer;transition:border-color .15s;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .msel-btn:hover{border-color:rgba(246,192,74,.4);}
+  .msel.open .msel-btn{border-color:var(--gold);}
+  .msel-chev{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:11px;pointer-events:none;}
+  .msel-pop[hidden]{display:none;}
+  .msel-pop{position:absolute;z-index:40;top:calc(100% + 6px);left:0;min-width:200px;max-height:300px;overflow-y:auto;background:var(--ink-1);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(0,0,0,.5);padding:7px;}
+  .msel-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:3px 6px 7px;border-bottom:1px solid var(--line);margin-bottom:5px;}
+  .msel-actions button{background:transparent;border:0;color:var(--gold-bright);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;padding:2px 4px;}
+  .msel-cnt{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:10px;}
+  .msel-opt{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:6px;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--text);}
+  .msel-opt:hover{background:rgba(246,192,74,.07);}
+  .msel-opt input{accent-color:var(--gold);width:14px;height:14px;cursor:pointer;margin:0;}
 </style>
 </head>
 <body>
@@ -316,7 +329,14 @@
         <label class="filter"><span class="flabel">Month</span>
           <div class="selwrap"><select id="fMonth"></select></div></label>
         <label class="filter"><span class="flabel">Airline</span>
-          <div class="selwrap"><select id="fAirline"><option value="ALL">All airlines</option></select></div></label>
+          <div class="msel" id="airMsel">
+            <button type="button" class="msel-btn" id="airBtn" aria-haspopup="true"><span id="airBtnLbl">All airlines</span></button>
+            <span class="msel-chev">▾</span>
+            <div class="msel-pop" id="airPop" hidden>
+              <div class="msel-actions"><button type="button" id="airClear">Clear</button><span class="msel-cnt" id="airCnt"></span></div>
+              <div id="airList"></div>
+            </div>
+          </div></label>
         <label class="filter"><span class="flabel">Category</span>
           <div class="selwrap"><select id="fCategory"><option value="ALL">All flights</option><option value="PAX">Pax</option><option value="CGO">Cargo</option></select></div></label>
       </div>
@@ -447,14 +467,14 @@
   let VIEW_MODE='list';
   let SEARCH_Q='';
   let SORT={key:'',dir:1};   // sortable list columns
-  let AIRLINE_FILTER='ALL';
+  let AIRLINE_SEL=new Set();   // selected airline codes; empty = all
   let CATEGORY_FILTER='ALL';   // ALL | PAX | CGO  (Cargo = service type CGO; everything else = Pax)
   let SELECTED_DAY=null;       // preserve the chosen day across refreshes / filter changes
   let OV_COLLAPSED=false; try{const _v=localStorage.getItem('occ_ov'); OV_COLLAPSED=_v!=null?(_v==='1'):(window.innerWidth<760);}catch(e){}
   let FILT_COLLAPSED=false; try{const _fv=localStorage.getItem('occ_filt'); FILT_COLLAPSED=_fv!=null?(_fv==='1'):(window.innerWidth<760);}catch(e){}
   async function fillDays(station, period){
     const daytabsEl=document.getElementById('daytabs'), panel=document.getElementById('daypanel'),
-          fAirline=document.getElementById('fAirline'), fCategory=document.getElementById('fCategory'),
+          airListEl=document.getElementById('airList'), fCategory=document.getElementById('fCategory'),
           fFrom=document.getElementById('fFrom'), fTo=document.getElementById('fTo');
     const from=fFrom.value, to=fTo.value;
     const days=daysInRange(from,to);
@@ -464,27 +484,33 @@
     const catOf=f=>typeCls(f.type)==='cgo'?'CGO':'PAX';
     // airlines appearing in the selected range → dropdown options
     const airlines=[...new Set(days.flatMap(iso=>(F[iso]||[]).map(f=>f.airline)).filter(Boolean))].sort();
-    if(fAirline){
-      if(AIRLINE_FILTER!=='ALL' && !airlines.includes(AIRLINE_FILTER)) AIRLINE_FILTER='ALL';
-      fAirline.innerHTML='<option value="ALL">All airlines</option>'+airlines.map(a=>`<option value="${a}">${a}</option>`).join('');
-      fAirline.value=AIRLINE_FILTER;
-      fAirline.onchange=()=>{ AIRLINE_FILTER=fAirline.value; renderTabs(); paint(); updateSummary(); };
+    if(airListEl){
+      [...AIRLINE_SEL].forEach(a=>{ if(!airlines.includes(a)) AIRLINE_SEL.delete(a); });   // drop carriers not in range
+      airListEl.innerHTML = airlines.map(a=>`<label class="msel-opt"><input type="checkbox" value="${a}" ${AIRLINE_SEL.has(a)?'checked':''}><span>${a}</span></label>`).join('');
+      airListEl.querySelectorAll('input').forEach(cb=>cb.addEventListener('change',()=>{
+        if(cb.checked) AIRLINE_SEL.add(cb.value); else AIRLINE_SEL.delete(cb.value);
+        updateAirLabel(); renderTabs(); paint(); updateSummary(); updateFiltSummary();
+      }));
+      const acEl=document.getElementById('airClear');
+      if(acEl) acEl.onclick=()=>{ AIRLINE_SEL.clear(); airListEl.querySelectorAll('input').forEach(cb=>cb.checked=false); updateAirLabel(); renderTabs(); paint(); updateSummary(); updateFiltSummary(); };
+      updateAirLabel();
     }
     if(fCategory){
       fCategory.value=CATEGORY_FILTER;
       fCategory.onchange=()=>{ CATEGORY_FILTER=fCategory.value; renderTabs(); paint(); updateSummary(); };
     }
-    const filt=arr=>arr.filter(f=>(AIRLINE_FILTER==='ALL'||f.airline===AIRLINE_FILTER)&&(CATEGORY_FILTER==='ALL'||catOf(f)===CATEGORY_FILTER));
+    const filt=arr=>arr.filter(f=>(AIRLINE_SEL.size===0||AIRLINE_SEL.has(f.airline))&&(CATEGORY_FILTER==='ALL'||catOf(f)===CATEGORY_FILTER));
     const so=(ALL[period]||{})[station]||{}; const stationTotal=(so.weeks||[]).reduce((s,w)=>s+(w.flights||0),0);
     const isCurMonth=(period===CUR_PERIOD);
     function updateSummary(){
       const wsEl=document.getElementById('weekSummary'); if(!wsEl) return;
       const b=wsEl.querySelector('.ws-count b'), lbl=wsEl.querySelector('.ws-lbl'); if(!b||!lbl) return;
-      if(AIRLINE_FILTER==='ALL' && CATEGORY_FILTER==='ALL'){ b.textContent=stationTotal; lbl.innerHTML='<span>Flights</span>'+(isCurMonth?'<small>this month</small>':''); }
+      if(AIRLINE_SEL.size===0 && CATEGORY_FILTER==='ALL'){ b.textContent=stationTotal; lbl.innerHTML='<span>Flights</span>'+(isCurMonth?'<small>this month</small>':''); }
       else {
-        let c=0; for(const iso in monthData){ if(iso.startsWith(period)) c+=monthData[iso].filter(f=>!f.cont && (AIRLINE_FILTER==='ALL'||f.airline===AIRLINE_FILTER) && (CATEGORY_FILTER==='ALL'||catOf(f)===CATEGORY_FILTER)).length; }
+        let c=0; for(const iso in monthData){ if(iso.startsWith(period)) c+=monthData[iso].filter(f=>!f.cont && (AIRLINE_SEL.size===0||AIRLINE_SEL.has(f.airline)) && (CATEGORY_FILTER==='ALL'||catOf(f)===CATEGORY_FILTER)).length; }
         b.textContent=c;
-        const tag=[AIRLINE_FILTER!=='ALL'?AIRLINE_FILTER:null, CATEGORY_FILTER==='CGO'?'Cargo':CATEGORY_FILTER==='PAX'?'Pax':null].filter(Boolean).join(' · ');
+        const airTag=AIRLINE_SEL.size===1?[...AIRLINE_SEL][0]:AIRLINE_SEL.size>1?AIRLINE_SEL.size+' airlines':null;
+        const tag=[airTag, CATEGORY_FILTER==='CGO'?'Cargo':CATEGORY_FILTER==='PAX'?'Pax':null].filter(Boolean).join(' · ');
         lbl.innerHTML='<span>'+tag+'</span>'+(isCurMonth?'<small>this month</small>':'');
       }
     }
@@ -562,15 +588,22 @@
   // ── Flight list (single-station) ──
   const DOW=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   const MON3=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function updateAirLabel(){
+    const el=document.getElementById('airBtnLbl'), cnt=document.getElementById('airCnt');
+    const n=AIRLINE_SEL.size;
+    if(el) el.textContent = n===0?'All airlines' : n===1?[...AIRLINE_SEL][0] : n+' airlines';
+    if(cnt) cnt.textContent = n?n+' selected':'';
+  }
   function updateFiltSummary(){
     const el=document.getElementById('filtSum'); if(!el) return;
     const g=id=>document.getElementById(id)||{};
     const st=g('fStation').value||'';
     const mo=g('fMonth'); const moTxt=(mo.options&&mo.selectedIndex>=0)?mo.options[mo.selectedIndex].text:'';
     const yr=g('fYear').value||'';
-    const air=g('fAirline').value||'ALL', cat=g('fCategory').value||'ALL';
+    const cat=g('fCategory').value||'ALL';
+    const air=AIRLINE_SEL.size===0?'All airlines':AIRLINE_SEL.size===1?[...AIRLINE_SEL][0]:AIRLINE_SEL.size+' airlines';
     let d=''; if(SELECTED_DAY){const dt=new Date(SELECTED_DAY+'T00:00'); d=DOW[dt.getDay()].slice(0,3)+' '+dt.getDate();}
-    const bits=[st,(moTxt?moTxt.slice(0,3):'')+(yr?' '+yr:''),d,air==='ALL'?'All airlines':air,cat==='PAX'?'Pax':cat==='CGO'?'Cargo':''].filter(x=>x&&x.trim());
+    const bits=[st,(moTxt?moTxt.slice(0,3):'')+(yr?' '+yr:''),d,air,cat==='PAX'?'Pax':cat==='CGO'?'Cargo':''].filter(x=>x&&x.trim());
     el.textContent=bits.join(' · ');
   }
   const addDays=(iso,n)=>{const d=new Date(iso+'T00:00');d.setDate(d.getDate()+n);return d.toISOString().slice(0,10);};
@@ -831,6 +864,11 @@
       fMonth.addEventListener('change', ()=>{ defaultRange(); render(); });
       document.getElementById('fFrom').addEventListener('change', onRangeChange);
       document.getElementById('fTo').addEventListener('change', onRangeChange);
+      const airBtn=document.getElementById('airBtn'), airPop=document.getElementById('airPop'), airMsel=document.getElementById('airMsel');
+      if(airBtn&&airPop&&airMsel){
+        airBtn.addEventListener('click',(e)=>{ e.stopPropagation(); const willOpen=airPop.hidden; airPop.hidden=!willOpen; airMsel.classList.toggle('open',willOpen); });
+        document.addEventListener('click',(e)=>{ if(!airMsel.contains(e.target)){ airPop.hidden=true; airMsel.classList.remove('open'); } });
+      }
       window.__filtersWired = true;
     }
     const filtBand=document.getElementById('filtBand'); if(filtBand) filtBand.classList.toggle('collapsed', FILT_COLLAPSED);
