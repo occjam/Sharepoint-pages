@@ -205,7 +205,15 @@
   .controw,.ronrow{background:rgba(78,168,255,.05)!important;box-shadow:inset 3px 0 0 rgba(78,168,255,.55);}
   .cont-mark{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4EA8FF;letter-spacing:.04em;}
   .fcount{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);margin:12px 2px 0;text-align:right;letter-spacing:.05em;}
-  .viewbar{display:flex;justify-content:flex-end;margin:0 2px 12px;}
+  .viewbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 2px 12px;}
+  .fsearch{display:flex;align-items:center;gap:8px;background:#0e2238;border:1px solid var(--line);border-radius:8px;padding:0 11px;flex:1 1 230px;max-width:360px;}
+  .fsearch-ic{color:var(--muted);flex:0 0 auto;}
+  .fsearch input{background:transparent;border:0;outline:0;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12.5px;padding:9px 0;width:100%;}
+  .fsearch input::placeholder{color:var(--muted);}
+  .fsearch input::-webkit-search-cancel-button{filter:invert(.6);cursor:pointer;}
+  .fhead .fsort{cursor:pointer;user-select:none;transition:color .15s;white-space:nowrap;}
+  .fhead .fsort:hover{color:var(--gold-bright);}
+  .sarr{color:var(--gold-bright);font-size:8px;}
   .vtoggle{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
   .vbtn{background:transparent;border:none;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;padding:7px 15px;cursor:pointer;}
   .vbtn.on{background:rgba(246,192,74,.14);color:var(--gold-bright,#FFD873);}
@@ -437,6 +445,8 @@
     fillDays(station, period);
   }
   let VIEW_MODE='list';
+  let SEARCH_Q='';
+  let SORT={key:'',dir:1};   // sortable list columns
   let AIRLINE_FILTER='ALL';
   let CATEGORY_FILTER='ALL';   // ALL | PAX | CGO  (Cargo = service type CGO; everything else = Pax)
   let SELECTED_DAY=null;       // preserve the chosen day across refreshes / filter changes
@@ -518,15 +528,28 @@
     }
     function paint(){
       if(!panel) return;
-      const list=filt(F[curIso]||[]);
-      const toggle=`<div class="viewbar"><div class="vtoggle">`
-        +`<button class="vbtn${VIEW_MODE==='list'?' on':''}" data-v="list">List</button>`
+      const base=filt(F[curIso]||[]);
+      const sIc='<svg class="fsearch-ic" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+      const toggle=`<div class="viewbar">`
+        +`<div class="fsearch">${sIc}<input type="search" id="fSearch" placeholder="Search flight, city, aircraft\u2026" autocomplete="off" value="${(SEARCH_Q||'').replace(/"/g,'&quot;')}"></div>`
+        +`<div class="vtoggle"><button class="vbtn${VIEW_MODE==='list'?' on':''}" data-v="list">List</button>`
         +`<button class="vbtn${VIEW_MODE==='timeline'?' on':''}" data-v="timeline">Timeline</button></div></div>`;
-      const body = VIEW_MODE==='timeline' ? dayTimeline(list, curIso===todayJM) : dayPanel(list);
-      panel.innerHTML = overview(list) + toggle + body;
+      panel.innerHTML = overview(base) + toggle + '<div id="dpbody"></div>';
+      function renderBody(){
+        const q=(SEARCH_Q||'').trim().toLowerCase();
+        let shown = q ? base.filter(f=>flightMatch(f,q)) : base.slice();
+        if(SORT.key) shown.sort(sortCmp);
+        const el=document.getElementById('dpbody'); if(!el) return;
+        if(q && !shown.length){ el.innerHTML='<div class="ftable"><div class="fempty">No flights match \u201c'+q.replace(/</g,'&lt;')+'\u201d.</div></div>'; return; }
+        el.innerHTML = VIEW_MODE==='timeline' ? dayTimeline(shown, curIso===todayJM) : dayPanel(shown);
+        el.querySelectorAll('.fhead .fsort').forEach(h2=>h2.addEventListener('click',()=>{ const k=h2.dataset.sort; if(SORT.key===k){SORT.dir*=-1;} else {SORT.key=k;SORT.dir=1;} renderBody(); }));
+      }
+      renderBody();
       const ovT=document.getElementById('ovToggle');
       if(ovT) ovT.onclick=()=>{ OV_COLLAPSED=!OV_COLLAPSED; try{localStorage.setItem('occ_ov',OV_COLLAPSED?'1':'0');}catch(e){} const ob=document.getElementById('ovBand'); if(ob) ob.classList.toggle('collapsed',OV_COLLAPSED); };
       panel.querySelectorAll('.vbtn').forEach(b=>b.addEventListener('click',()=>{ VIEW_MODE=b.dataset.v; paint(); }));
+      const si=document.getElementById('fSearch');
+      if(si) si.addEventListener('input',()=>{ SEARCH_Q=si.value; renderBody(); });
       updateFiltSummary();
     }
     function showDay(iso){ curIso=iso; SELECTED_DAY=iso; renderTabs(); paint(); applyTheme(iso); }
@@ -557,6 +580,24 @@
     try{ const r=await fetch('airports.json?t='+Date.now(),{cache:'no-store'}); if(r.ok) AIRPORTS=await r.json(); }catch(e){}
   }
   const cityOf=c=>AIRPORTS[c]||'';
+  function flightMatch(f,q){
+    return [f.airline,f.arr,f.dep,f.from,f.to,cityOf(f.from),cityOf(f.to),f.acft,f.type]
+      .some(p=>p!=null && String(p).toLowerCase().includes(q));
+  }
+  const SORT_NULL=1e9;
+  function sortVal(f){ const k=SORT.key;
+    if(k==='sta') return toMin(f.sta)??SORT_NULL;
+    if(k==='std') return toMin(f.std)??SORT_NULL;
+    if(k==='fnum') return (f.arr??f.dep??SORT_NULL);
+    if(k==='airline') return (f.airline||'\uffff').toUpperCase();
+    if(k==='from') return (f.from||'\uffff');
+    if(k==='to') return (f.to||'\uffff');
+    if(k==='acft') return String(f.acft||'\uffff');
+    if(k==='type') return (f.type||'\uffff');
+    return 0;
+  }
+  function sortCmp(a,b){ const va=sortVal(a),vb=sortVal(b); if(va<vb) return -SORT.dir; if(va>vb) return SORT.dir; return 0; }
+  function sortArrow(k){ return SORT.key===k ? (SORT.dir>0?' <span class="sarr">\u25b2</span>':' <span class="sarr">\u25bc</span>') : ''; }
   const portCell=(code)=>{ const city=cityOf(code); return code+(city?' <span class="fcity">'+city+'</span>':''); };
   const flightCache={};
   async function loadMonths(months){
@@ -676,8 +717,8 @@
         <span class="ftype-cell"><span class="ftype ${cls}">${f.type}${f.cont?' ↴':''}</span>${rey}</span></div>`;
     }).join('');
     return `<div class="ftable">
-      <div class="frow fhead"><span class="fhead-air">Airline</span><span>Flight Number</span><span>STA</span>
-        <span>STD</span><span>Origin</span><span>Dest</span><span>Acft</span><span>Type</span></div>
+      <div class="frow fhead"><span class="fhead-air fsort" data-sort="airline">Airline${sortArrow('airline')}</span><span class="fsort" data-sort="fnum">Flight Number${sortArrow('fnum')}</span><span class="fsort" data-sort="sta">STA${sortArrow('sta')}</span>
+        <span class="fsort" data-sort="std">STD${sortArrow('std')}</span><span class="fsort" data-sort="from">Origin${sortArrow('from')}</span><span class="fsort" data-sort="to">Dest${sortArrow('to')}</span><span class="fsort" data-sort="acft">Acft${sortArrow('acft')}</span><span class="fsort" data-sort="type">Type${sortArrow('type')}</span></div>
       <div class="fbody">${rows}</div></div>
       <div class="fcount">${list.length} movements</div>`;
   }
